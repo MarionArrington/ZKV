@@ -57,6 +57,46 @@
             height: 28%;
         }
 
+        /* --- ŽMURKAJÚCA SOVA (CSS animácia striedania obrázkov) --- */
+        .hotspot.sova {
+            background-image: url('https://i.ibb.co/tT4pQm75/pracovna.png'); /* fallback, ale ide o transparentný div nad pôvodným obrázkom */
+            background-size: 0 0;
+        }
+
+        /* Vytvoríme kontajner pre sovu na hlavnom obrázku, kde sa budú striedať stavy */
+        .owl-container {
+            position: absolute;
+            top: 9%;
+            left: 72%;
+            width: 12%;
+            height: 28%;
+            pointer-events: none;
+            z-index: 3;
+        }
+
+        .owl-layer {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-repeat: no-repeat;
+        }
+
+        /* Otvorené oči (pôvodný stav z pracovne) - tu simulujeme blikanie cez opacity */
+        .owl-blink {
+            background-image: url('https://i.ibb.co/vCyCDWsR/zatvoren-o-i.png');
+            opacity: 0;
+            animation: blinkAnimation 5s infinite;
+        }
+
+        @keyframes blinkAnimation {
+            0%, 90%, 100% { opacity: 0; } /* Oči otvorené väčšinu času */
+            93%, 97% { opacity: 1; }      /* Rýchle zažmurkanie zatvorenými očami */
+        }
+
+
         /* --- ANIMOVANÉ PRVKY --- */
 
         /* Sviečka (žiara) */
@@ -319,6 +359,11 @@
     <div class="workspace-container">
         <!-- Hlavný obrázok pracovne -->
         <img src="https://i.ibb.co/tT4pQm75/pracovna.png" alt="Pracovňa" class="main-image">
+
+        <!-- Animovaná sova (žmurkanie pomocou prekrývania obrázka so zatvorenými očami) -->
+        <div class="owl-container">
+            <div class="owl-layer owl-blink"></div>
+        </div>
 
         <!-- Animované prvky -->
         <div class="flame-glow"></div>
