@@ -4,8 +4,135 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hradná pracovňa</title>
-    <!-- Ak máte CSS v samostatnom súbore style.css, nechajte tento riadok. -->
-    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            background-color: #1a1a1a;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            font-family: 'Georgia', serif;
+        }
+
+        .workspace-container {
+            position: relative;
+            max-width: 1000px;
+            width: 100%;
+        }
+
+        .main-image {
+            width: 100%;
+            height: auto;
+            display: block;
+            border-radius: 4px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7);
+        }
+
+        /* Klikacie oblasti (hotspoty) - pridal som pre istotu viditeľný rám, aby ste videli, na čo klikáte */
+        .hotspot {
+            position: absolute;
+            cursor: pointer;
+            z-index: 5;
+            border: 2px dashed rgba(255, 0, 0, 0.6); /* Tu môžete neskôr zmazať orámovanie, keď to bude fungovať */
+            background: rgba(255, 0, 0, 0.1);
+        }
+
+        .hotspot.pergamen {
+            top: 62%;
+            left: 39%;
+            width: 26%;
+            height: 26%;
+        }
+
+        .hotspot.fotografia {
+            top: 40%;
+            left: 76%;
+            width: 22%;
+            height: 12%;
+        }
+
+        .hotspot.sova {
+            top: 9%;
+            left: 72%;
+            width: 12%;
+            height: 28%;
+        }
+
+        .hotspot-flowers {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 42%;
+            height: 55%;
+            z-index: 5;
+            pointer-events: none;
+        }
+
+        /* Modálne okno (Starý pergamen) */
+        .modal-backdrop {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.65);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            visibility: hidden;
+            opacity: 0;
+            transition: opacity 0.35s ease, visibility 0.35s ease;
+            z-index: 100;
+        }
+
+        .modal-backdrop.active {
+            visibility: visible;
+            opacity: 1;
+        }
+
+        .scroll-modal {
+            background: linear-gradient(135deg, #f7f0dc, #e5d1ab);
+            border: 4px solid #7c4d25;
+            border-radius: 10px;
+            width: 60%;
+            max-width: 480px;
+            padding: 35px 30px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.7), inset 0 0 50px rgba(120, 75, 30, 0.2);
+            color: #2b1705;
+            position: relative;
+            text-align: center;
+        }
+
+        .scroll-modal h2 {
+            margin-top: 0;
+            font-family: 'Georgia', serif;
+            color: #4a270b;
+            border-bottom: 2px solid #b8915c;
+            padding-bottom: 8px;
+        }
+
+        .scroll-modal p {
+            font-size: 1.05rem;
+            line-height: 1.6;
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            background: none;
+            border: none;
+            font-size: 26px;
+            cursor: pointer;
+            color: #5c3a21;
+            transition: color 0.2s;
+        }
+
+        .close-btn:hover {
+            color: #000;
+        }
+    </style>
 </head>
 <body>
 
@@ -18,17 +145,9 @@
         <div class="hotspot fotografia" onclick="showText('fotografia')" title="Fotografia"></div>
         <div class="hotspot sova" onclick="showText('sova')" title="Sova"></div>
 
-        <!-- Interaktívna oblasť pre kvety vľavo dole -->
-        <div class="hotspot-flowers" title="Kytica kvetov"></div>
-
-        <!-- Animované elementy -->
-        <div class="steam"></div>
-        <div class="flame-glow"></div>
-
         <!-- Modálne okno (starý pergamen) s tmavým pozadím -->
         <div id="modal-backdrop" class="modal-backdrop">
             <div class="scroll-modal" onclick="event.stopPropagation()">
-                <!-- OPRAVA: Zmenené na správnu funkciu closeText() -->
                 <button class="close-btn" onclick="closeText()">&times;</button>
                 <div id="text-content"></div>
             </div>
@@ -37,9 +156,9 @@
 
 <script>
 const texts = {
-    pergamen: "Tento stredný pergamen na stole obsahuje tajné pokyny pre nadchádzajúce vyučovanie obrany proti čiernej mágii. Očakáva sa tvoja účasť o polnoci.",
-    fotografia: "Fotografia v zlatom ráme zachraňuje čarovné chvíle strávené v slnečných záhradách pri starom hrade.",
-    sova: "Vierna hrana sova pozorne stráži miestnosť a trpezlivo čaká, kým jej pripne na nohu dôležitý odkaz pre adresáta."
+    pergamen: "<h2>Dôležitý list</h2><p>Tento stredný pergamen na stole obsahuje tajné pokyny pre nadchádzajúce vyučovanie obrany proti čiernej mágii. Očakáva sa tvoja účasť o polnoci.</p>",
+    fotografia: "<h2>Vzácna spomienka</h2><p>Fotografia v zlatom ráme zachraňuje čarovné chvíle strávené v slnečných záhradách pri starom hrade.</p>",
+    sova: "<h2>Biela sova</h2><p>Vierna hrana sova pozorne stráži miestnosť a trpezlivo čaká, kým jej pripne na nohu dôležitý odkaz pre adresáta.</p>"
 };
 
 function showText(target) {
@@ -52,7 +171,7 @@ function showText(target) {
     }
 }
 
-// Zatvorenie kliknutím mimo okna (na tmavé pozadie)
+// Zatvorenie kliknutím mimo okna
 document.getElementById('modal-backdrop').addEventListener('click', function(event) {
     const backdrop = document.getElementById('modal-backdrop');
     if (event.target === backdrop) {
@@ -60,7 +179,7 @@ document.getElementById('modal-backdrop').addEventListener('click', function(eve
     }
 });
 
-// Zatvorenie cez krížik alebo inak
+// Zatvorenie cez krížik
 function closeText() {
     const backdrop = document.getElementById('modal-backdrop');
     backdrop.classList.remove('active');
