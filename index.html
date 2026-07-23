@@ -57,16 +57,16 @@
             height: 28%;
         }
 
-        /* --- OPRAVENÉ ANIMOVANÉ PRVKY --- */
+        /* --- ANIMOVANÉ PRVKY PRESNE NA MIERE --- */
 
-        /* 1. Plameň sviečky - Zmeňte top/left podľa toho, kde je sviečka */
+        /* 1. Plameň sviečky na stole vpravo */
         .flame-glow {
             position: absolute;
-            top: 45%; 
-            left: 48%; 
-            width: 35px;
-            height: 35px;
-            background: radial-gradient(circle, rgba(255,200,50,0.9) 0%, rgba(255,100,0,0.5) 50%, transparent 80%);
+            top: 55%;
+            left: 66.5%;
+            width: 25px;
+            height: 25px;
+            background: radial-gradient(circle, rgba(255,220,100,0.9) 0%, rgba(255,120,0,0.6) 50%, transparent 80%);
             border-radius: 50%;
             pointer-events: none;
             z-index: 4;
@@ -74,49 +74,49 @@
         }
 
         @keyframes flicker {
-            0% { transform: scale(0.85); opacity: 0.6; }
-            50% { transform: scale(1.25); opacity: 1; }
-            100% { transform: scale(0.95); opacity: 0.7; }
+            0% { transform: scale(0.8); opacity: 0.6; }
+            50% { transform: scale(1.2); opacity: 1; }
+            100% { transform: scale(0.9); opacity: 0.7; }
         }
 
-        /* 2. Para zo šálky - Zmeňte top/left podľa toho, kde je šálka */
+        /* 2. Para zo šálky vľavo dole */
         .steam {
             position: absolute;
-            top: 72%; 
-            left: 20%; 
-            width: 25px;
-            height: 50px;
+            top: 73%;
+            left: 10%;
+            width: 20px;
+            height: 45px;
             background: linear-gradient(to top, rgba(255,255,255,0.6), transparent);
             border-radius: 50%;
             pointer-events: none;
             z-index: 4;
-            filter: blur(3px);
+            filter: blur(4px);
             animation: riseSteam 2.5s infinite linear;
         }
 
         @keyframes riseSteam {
             0% { transform: translateY(0) scaleX(0.7); opacity: 0; }
             40% { opacity: 0.7; }
-            100% { transform: translateY(-50px) scaleX(1.5); opacity: 0; }
+            100% { transform: translateY(-45px) scaleX(1.5); opacity: 0; }
         }
 
-        /* 3. Pohyb závesu - Zmeňte top/left/width/height podľa toho, kde je okno/záves */
+        /* 3. Pohyb ľavého modrého závesu pri okne */
         .curtain-anim {
             position: absolute;
-            top: 10%; 
-            left: 10%; 
-            width: 15%;
-            height: 35%;
+            top: 0%;
+            left: 27%;
+            width: 7%;
+            height: 45%;
             pointer-events: none;
             z-index: 4;
             transform-origin: top center;
             animation: swayCurtain 4s infinite ease-in-out;
-            background: linear-gradient(90deg, rgba(255,255,255,0.08), transparent);
+            background: linear-gradient(90deg, rgba(255,255,255,0.05), transparent);
         }
 
         @keyframes swayCurtain {
             0%, 100% { transform: rotate(0deg); }
-            50% { transform: rotate(4deg) skewX(3deg); }
+            50% { transform: rotate(3deg) skewX(2deg); }
         }
 
 
@@ -211,7 +211,7 @@
         <!-- Hlavný obrázok pracovne -->
         <img src="https://i.ibb.co/tT4pQm75/pracovna.png" alt="Pracovňa" class="main-image">
 
-        <!-- Animované prvky -->
+        <!-- Animované prvky umiestnené na správnych miestach -->
         <div class="flame-glow"></div>
         <div class="steam"></div>
         <div class="curtain-anim"></div>
