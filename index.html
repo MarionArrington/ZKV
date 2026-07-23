@@ -168,8 +168,8 @@
 
         .scroll-container {
             position: relative;
-            width: 75%;
-            max-width: 650px;
+            width: 85%;
+            max-width: 750px;
         }
 
         .scroll-image {
@@ -181,10 +181,10 @@
 
         .scroll-text-content {
             position: absolute;
-            top: 18%;
-            left: 15%;
-            width: 70%;
-            height: 64%;
+            top: 15%;
+            left: 10%;
+            width: 80%;
+            height: 70%;
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -205,25 +205,70 @@
             margin-bottom: 10px;
         }
 
-        /* Štýl pre profil praktikantky */
+        /* Štýl pre profil praktikantky s fotkami v štýle predlohy */
+        .profile-layout {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+            width: 100%;
+            text-align: left;
+        }
+
+        .profile-text-side {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
         .profile-title {
-            font-size: 1.4rem;
+            font-size: 1.25rem;
             font-weight: bold;
             color: #4a270b;
-            margin: 0 0 5px 0;
+            margin: 0 0 3px 0;
         }
 
         .profile-subtitle {
-            font-size: 1rem;
+            font-size: 0.9rem;
             font-style: italic;
             color: #5c3a21;
-            margin: 0 0 25px 0;
+            margin: 0 0 15px 0;
         }
 
         .profile-text {
-            font-size: 0.95rem;
-            line-height: 1.5;
+            font-size: 0.82rem;
+            line-height: 1.4;
             margin: 0;
+        }
+
+        .profile-photos-side {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            align-items: flex-end;
+            position: relative;
+            min-width: 140px;
+        }
+
+        .photo-main {
+            width: 110px;
+            height: 135px;
+            object-fit: cover;
+            border: 3px solid #fff;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            z-index: 2;
+        }
+
+        .photo-secondary {
+            width: 80px;
+            height: 80px;
+            object-fit: cover;
+            border: 3px solid #fff;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            position: absolute;
+            top: 75px;
+            right: 75px;
+            z-index: 3;
         }
 
         /* Štýl pre kontakty na pergamene sovy */
@@ -304,9 +349,17 @@
 <script>
 const texts = {
     pergamen: "<h2>Dôležitý list</h2><p>Tento stredný pergamen na stole obsahuje tajné pokyny pre nadchádzajúce vyučovanie obrany proti čiernej mágii. Očakáva sa tvoja účasť o polnoci.</p>",
-    fotografia: `<h2 class="profile-title">Marion G. Arrington</h2>
-                 <p class="profile-subtitle">praktikantka</p>
-                 <p class="profile-text">Som profesionálna tanečnica, no od začiatku tohto roka pôsobím v Bradaviciach na pozícií praktikantky. Mojim hlavným zameraním sú Lektvary, Obrana proti čiernej mágií a Kúzelnícke liečiteľstvo. Spoločne sa budeme stretávať na hodinách ZKV, ktorých absolvovanie je, nariadením Ministerstva mágie, povinným pre všetkých študentov školy.</p>`,
+    fotografia: `<div class="profile-layout">
+                    <div class="profile-text-side">
+                        <h2 class="profile-title">Marion G. Arrington</h2>
+                        <p class="profile-subtitle">praktikantka</p>
+                        <p class="profile-text">Som profesionálna tanečnica, no od začiatku tohto roka pôsobím v Bradaviciach na pozícií praktikantky. Mojim hlavným zameraním sú Lektvary, Obrana proti čiernej mágií a Kúzelnícke liečiteľstvo. Spoločne sa budeme stretávať na hodinách ZKV, ktorých absolvovanie je, nariadením Ministerstva mágie, povinným pre všetkých študentov školy.</p>
+                    </div>
+                    <div class="profile-photos-side">
+                        <img src="https://i.ibb.co/6R25r891/740full-mariia-arsentieva.jpg" alt="Marion hlavná" class="photo-main">
+                        <img src="https://i.ibb.co/6c1p2K92/ZABS4Ath-400x400.jpg" alt="Marion portrét" class="photo-secondary">
+                    </div>
+                 </div>`,
     sova: `<h2>Kontakty</h2>
            <div class="contacts-list">
                <div class="contact-item">
