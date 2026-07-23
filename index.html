@@ -57,9 +57,9 @@
             height: 28%;
         }
 
-        /* --- ANIMÁCIE --- */
+        /* --- ANIMOVANÉ PRVKY --- */
 
-        /* Sviečka */
+        /* Sviečka (žiara) */
         .flame-glow {
             position: absolute;
             top: 53%;
@@ -80,25 +80,16 @@
             100% { transform: scale(0.9); opacity: 0.85; }
         }
 
-        /* Para posunutá vyššie */
-        .steam {
+        /* Reálna para (GIF umiestnený presne nad šálku) */
+        .steam-gif {
             position: absolute;
-            top: 58%; /* Posunuté vyššie nad šálku */
-            left: 8.5%;
-            width: 35px;
-            height: 70px;
-            background: linear-gradient(to top, rgba(255,255,255,0.9), rgba(255,255,255,0.1));
-            border-radius: 50%;
+            top: 45%;
+            left: 3%;
+            width: 22%;
             pointer-events: none;
             z-index: 4;
-            filter: blur(4px);
-            animation: riseSteam 1.8s infinite linear;
-        }
-
-        @keyframes riseSteam {
-            0% { transform: translateY(20px) scaleX(0.5); opacity: 0; }
-            30% { opacity: 0.9; }
-            100% { transform: translateY(-50px) scaleX(1.8); opacity: 0; }
+            mix-blend-mode: screen; /* Skryje čierne pozadie z GIFu, ak nebolo priehľadné */
+            opacity: 0.85;
         }
 
         /* Záves */
@@ -214,7 +205,8 @@
 
         <!-- Animované prvky -->
         <div class="flame-glow"></div>
-        <div class="steam"></div>
+        <!-- Reálny GIF s parou -->
+        <img src="https://i.ibb.co/7t5s98v8/coffee-hot-coffee.gif" alt="Para" class="steam-gif">
         <div class="curtain-anim"></div>
 
         <!-- Interaktívne oblasti pre predmety -->
