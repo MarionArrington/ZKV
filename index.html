@@ -1,1 +1,240 @@
-# ZKV
+<!DOCTYPE html>
+<html lang="sk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hradná pracovňa</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="workspace-container">
+        <!-- Hlavný obrázok pracovne -->
+        <img src="https://i.ibb.co/tT4pQm75/pracovna.png" alt="Pracovňa" class="main-image">
+
+        <!-- Interaktívne oblasti pre predmety -->
+        <div class="hotspot pergamen" onclick="showText('pergamen')" title="Pergamen"></div>
+        <div class="hotspot fotografia" onclick="showText('fotografia')" title="Fotografia"></div>
+        <div class="hotspot sova" onclick="showText('sova')" title="Sova"></div>
+
+        <!-- Interaktívna oblasť pre kvety vľavo dole -->
+        <div class="hotspot-flowers" title="Kytica kvetov"></div>
+
+        <!-- Animované elementy -->
+        <div class="steam"></div>
+        <div class="flame-glow"></div>
+
+        <!-- Modálne okno (starý pergamen) s tmavým pozadím -->
+        <div id="modal-backdrop" class="modal-backdrop" onclick="closeText(event)">
+            <div class="scroll-modal" onclick="event.stopPropagation()">
+                <button class="close-btn" onclick="closeTextDirect()">&times;</button>
+                <div id="text-content"></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
+body {
+    background-color: #1a1a1a;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    font-family: 'Georgia', serif;
+}
+
+.workspace-container {
+    position: relative;
+    max-width: 1000px;
+    width: 100%;
+}
+
+.main-image {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 4px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7);
+    transition: transform 0.4s ease;
+    transform-origin: bottom left;
+}
+
+/* Klikacie oblasti pre objekty */
+.hotspot {
+    position: absolute;
+    cursor: pointer;
+    z-index: 5;
+}
+
+.hotspot.pergamen {
+    top: 62%; left: 39%; width: 26%; height: 26%;
+}
+
+.hotspot.fotografia {
+    top: 40%; left: 76%; width: 22%; height: 36%;
+}
+
+.hotspot.sova {
+    top: 9%; left: 72%; width: 12%; height: 28%;
+}
+
+/* --- ANIMÁCIA: Kvety sa jemne hýbu po prejdení myšou --- */
+.hotspot-flowers {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 42%;
+    height: 55%;
+    z-index: 5;
+    cursor: pointer;
+}
+
+.hotspot-flowers:hover ~ .main-image {
+    transform: rotate(1deg) scale(1.01);
+}
+
+/* --- ANIMÁCIA: Blikajúci plameň sviečky --- */
+.flame-glow {
+    position: absolute;
+    top: 55%;
+    left: 66.5%;
+    width: 18px;
+    height: 22px;
+    background: radial-gradient(circle, rgba(255,220,100,0.9) 0%, rgba(255,120,0,0.5) 50%, transparent 80%);
+    border-radius: 50%;
+    pointer-events: none;
+    animation: flicker 1.2s infinite alternate ease-in-out;
+    mix-blend-mode: screen;
+    z-index: 4;
+}
+
+@keyframes flicker {
+    0% { transform: scale(1); opacity: 0.7; }
+    50% { transform: scale(1.25) translateY(-2px); opacity: 1; filter: brightness(1.4); }
+    100% { transform: scale(0.9); opacity: 0.6; }
+}
+
+/* --- ANIMÁCIA: Para zo šálky --- */
+.steam {
+    position: absolute;
+    top: 68%;
+    left: 10.5%;
+    width: 15px;
+    height: 35px;
+    background: linear-gradient(to top, rgba(255,255,255,0.5), transparent);
+    border-radius: 50%;
+    filter: blur(4px);
+    pointer-events: none;
+    animation: riseSteam 2.5s infinite linear;
+    z-index: 4;
+}
+
+@keyframes riseSteam {
+    0% { transform: translateY(0) scaleX(0.4); opacity: 0; }
+    40% { opacity: 0.7; }
+    100% { transform: translateY(-35px) scaleX(1.6); opacity: 0; }
+}
+
+/* --- MODÁLNE OKNO (Starý pergamen) --- */
+
+.modal-backdrop {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.65); /* Jemné stmavenie celého pozadia */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 100;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.35s ease, visibility 0.35s ease;
+}
+
+.modal-backdrop.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.scroll-modal {
+    background: linear-gradient(135deg, #f7f0dc, #e5d1ab);
+    border: 4px solid #7c4d25;
+    border-radius: 10px;
+    width: 60%;
+    max-width: 480px;
+    padding: 35px 30px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.7), inset 0 0 50px rgba(120, 75, 30, 0.2);
+    color: #2b1705;
+    position: relative;
+    transform: scale(0.85) translateY(15px);
+    transition: transform 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    text-align: center;
+}
+
+.modal-backdrop.active .scroll-modal {
+    transform: scale(1) translateY(0);
+}
+
+.scroll-modal h2 {
+    margin-top: 0;
+    font-family: 'Georgia', serif;
+    color: #4a270b;
+    border-bottom: 2px solid #b8915c;
+    padding-bottom: 8px;
+}
+
+.scroll-modal p {
+    font-size: 1.05rem;
+    line-height: 1.6;
+}
+
+.close-btn {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    background: none;
+    border: none;
+    font-size: 26px;
+    cursor: pointer;
+    color: #5c3a21;
+    transition: color 0.2s;
+}
+
+.close-btn:hover {
+    color: #000;
+}
+// Jediný univerzálny pergamen mení svoj obsah podľa toho, na čo sa kliklo
+const texts = {
+    pergamen: "<h2>Dôležitý list</h2><p>Tento stredný pergamen na stole obsahuje tajné pokyny pre nadchádzajúce vyučovanie obrany proti čiernej mágii. Očakáva sa tvoja účasť o polnoci.</p>",
+    fotografia: "<h2>Vzácna spomienka</h2><p>Fotografia v zlatom ráme zachraňuje čarovné chvíle strávené v slnečných záhradách pri starom hrade.</p>",
+    sova: "<h2>Biela sova</h2><p>Vierna hradná sova pozorne stráži miestnosť a trppezlivo čaká, kým jej pripneš na nohu dôležitý odkaz pre adresáta.</p>"
+};
+
+function showText(target) {
+    const backdrop = document.getElementById('modal-backdrop');
+    const textContent = document.getElementById('text-content');
+    
+    if (texts[target]) {
+        textContent.innerHTML = texts[target];
+        backdrop.classList.add('active');
+    }
+}
+
+// Zatvorenie kliknutím mimo okna (na stmavnuté pozadie)
+function closeText(event) {
+    const backdrop = document.getElementById('modal-backdrop');
+    if (event.target === backdrop) {
+        backdrop.classList.remove('active');
+    }
+}
+
+// Zatvorenie cez krížik
+function closeTextDirect() {
+    const backdrop = document.getElementById('modal-backdrop');
+    backdrop.classList.remove('active');
+}
