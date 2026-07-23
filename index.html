@@ -46,8 +46,8 @@
         }
 
         @keyframes blinkAnimation {
-            0%, 90%, 100% { opacity: 0; } /* Oči otvorené (pôvodná pracovňa) */
-            93%, 97% { opacity: 1; }      /* Krátke mrknutie – prekrryje sa kompletne celý obrázok verziou so zatvorenými očami */
+            0%, 90%, 100% { opacity: 0; }
+            93%, 97% { opacity: 1; }
         }
 
         /* Klikacie oblasti (hotspoty) */
@@ -80,7 +80,6 @@
 
         /* --- ANIMOVANÉ PRVKY --- */
 
-        /* Sviečka (žiara) */
         .flame-glow {
             position: absolute;
             top: 53%;
@@ -101,7 +100,6 @@
             100% { transform: scale(0.9); opacity: 0.85; }
         }
 
-        /* Extra výrazná a veľká para nad šálkou */
         .steam-container {
             position: absolute;
             top: 45%;
@@ -145,7 +143,6 @@
             }
         }
 
-        /* Záves */
         .curtain-anim {
             position: absolute;
             top: 2%;
@@ -226,7 +223,7 @@
             margin-bottom: 10px;
         }
 
-        /* Štýl pre väčší profil praktikantky s fotkami */
+        /* Profil praktikantky */
         .profile-layout {
             display: flex;
             align-items: center;
@@ -292,14 +289,30 @@
             z-index: 3;
         }
 
-        /* Štýl pre kontakty na pergamene sovy */
+        /* Nový upravený štýl pre kontakty (prepíšte si texty v JS podľa vlastného želania) */
+        .contacts-wrapper {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+            gap: 10px;
+        }
+
+        .contacts-intro {
+            font-size: 0.95rem;
+            font-style: italic;
+            color: #5c3a21;
+            margin-bottom: 5px;
+            text-align: center;
+        }
+
         .contacts-list {
             display: flex;
             flex-direction: column;
-            gap: 12px;
+            gap: 10px;
             width: 100%;
+            max-width: 400px;
             align-items: flex-start;
-            padding-left: 15px;
         }
 
         .contact-item {
@@ -311,8 +324,8 @@
         }
 
         .contact-icon {
-            width: 30px;
-            height: 30px;
+            width: 26px;
+            height: 26px;
             object-fit: contain;
             border-radius: 50%;
         }
@@ -341,13 +354,12 @@
         <!-- Hlavný obrázok pracovne (podklad) -->
         <img src="https://i.ibb.co/tT4pQm75/pracovna.png" alt="Pracovňa" class="main-image">
 
-        <!-- Celá vrstva s celým obrázkom so zatvorenými očami, ktorá sa plynule rozsvieti/zhasne (mrknutie) -->
+        <!-- Celá vrstva s celým obrázkom so zatvorenými očami -->
         <div class="owl-blink-layer"></div>
 
         <!-- Animované prvky -->
         <div class="flame-glow"></div>
         
-        <!-- Veľká a výrazná stúpajúca para -->
         <div class="steam-container">
             <div class="steam-particle"></div>
             <div class="steam-particle"></div>
@@ -384,19 +396,22 @@ const texts = {
                         <img src="https://i.ibb.co/nsF6x8Pj/ZABS4-Ath-400x400.jpg" alt="Marion portrét" class="photo-secondary">
                     </div>
                  </div>`,
-    sova: `<h2>Kontakty</h2>
-           <div class="contacts-list">
-               <div class="contact-item">
-                   <img src="https://i.ibb.co/GfNHdQt8/1.png" alt="Email" class="contact-icon">
-                   <span>i.arden@revelio.cz</span>
-               </div>
-               <div class="contact-item">
-                   <img src="https://i.ibb.co/5WyLF5X8/2.png" alt="Discord" class="contact-icon">
-                   <span>isabellearden</span>
-               </div>
-               <div class="contact-item">
-                   <img src="https://i.ibb.co/5WyLF5X8/2.png" alt="Discord" class="contact-icon">
-                   <span>Ardenkin pavilón šeliem</span>
+    sova: `<h2>Sovička a odkazy</h2>
+           <div class="contacts-wrapper">
+               <p class="contacts-intro">Ak mi chceš niečo odkázať, pošli sovou list alebo ma zastihni tu:</p>
+               <div class="contacts-list">
+                   <div class="contact-item">
+                       <img src="https://i.ibb.co/GfNHdQt8/1.png" alt="Email" class="contact-icon">
+                       <span>i.arden@revelio.cz</span>
+                   </div>
+                   <div class="contact-item">
+                       <img src="https://i.ibb.co/5WyLF5X8/2.png" alt="Discord" class="contact-icon">
+                       <span>isabellearden</span>
+                   </div>
+                   <div class="contact-item">
+                       <img src="https://i.ibb.co/5WyLF5X8/2.png" alt="Discord" class="contact-icon">
+                       <span>Ardenkin pavilón šeliem</span>
+                   </div>
                </div>
            </div>`
 };
