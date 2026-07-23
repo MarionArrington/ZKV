@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hradná pracovňa</title>
+    <!-- Ak máte CSS v samostatnom súbore style.css, nechajte tento riadok. -->
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -25,15 +26,16 @@
         <div class="flame-glow"></div>
 
         <!-- Modálne okno (starý pergamen) s tmavým pozadím -->
-        <div id="modal-backdrop" class="modal-backdrop" onclick="closeText(event)">
+        <div id="modal-backdrop" class="modal-backdrop">
             <div class="scroll-modal" onclick="event.stopPropagation()">
-                <button class="close-btn" onclick="closeTextDirect()">&times;</button>
+                <!-- OPRAVA: Zmenené na správnu funkciu closeText() -->
+                <button class="close-btn" onclick="closeText()">&times;</button>
                 <div id="text-content"></div>
             </div>
         </div>
     </div>
+
 <script>
-// Tieto texty musia byt definovane, aby skript fungoval!
 const texts = {
     pergamen: "Tento stredný pergamen na stole obsahuje tajné pokyny pre nadchádzajúce vyučovanie obrany proti čiernej mágii. Očakáva sa tvoja účasť o polnoci.",
     fotografia: "Fotografia v zlatom ráme zachraňuje čarovné chvíle strávené v slnečných záhradách pri starom hrade.",
@@ -50,7 +52,7 @@ function showText(target) {
     }
 }
 
-// Zatvorenie kliknutím mimo okna
+// Zatvorenie kliknutím mimo okna (na tmavé pozadie)
 document.getElementById('modal-backdrop').addEventListener('click', function(event) {
     const backdrop = document.getElementById('modal-backdrop');
     if (event.target === backdrop) {
@@ -58,7 +60,7 @@ document.getElementById('modal-backdrop').addEventListener('click', function(eve
     }
 });
 
-// Zatvorenie cez krížik pomocou funkcie closeText()
+// Zatvorenie cez krížik alebo inak
 function closeText() {
     const backdrop = document.getElementById('modal-backdrop');
     backdrop.classList.remove('active');
