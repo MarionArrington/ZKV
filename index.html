@@ -57,9 +57,9 @@
             height: 28%;
         }
 
-        /* --- VÝRAZNÉ ANIMÁCIE --- */
+        /* --- ANIMÁCIE --- */
 
-        /* 1. Silná a jasná žiara sviečky */
+        /* Sviečka */
         .flame-glow {
             position: absolute;
             top: 53%;
@@ -80,11 +80,11 @@
             100% { transform: scale(0.9); opacity: 0.85; }
         }
 
-        /* 2. Dobre viditeľná hustá para nad šálkou */
+        /* Para posunutá vyššie */
         .steam {
             position: absolute;
-            top: 66%;
-            left: 9%;
+            top: 58%; /* Posunuté vyššie nad šálku */
+            left: 8.5%;
             width: 35px;
             height: 70px;
             background: linear-gradient(to top, rgba(255,255,255,0.9), rgba(255,255,255,0.1));
@@ -96,12 +96,12 @@
         }
 
         @keyframes riseSteam {
-            0% { transform: translateY(15px) scaleX(0.5); opacity: 0; }
+            0% { transform: translateY(20px) scaleX(0.5); opacity: 0; }
             30% { opacity: 0.9; }
-            100% { transform: translateY(-60px) scaleX(1.8); opacity: 0; }
+            100% { transform: translateY(-50px) scaleX(1.8); opacity: 0; }
         }
 
-        /* 3. Vlnenie závesu */
+        /* Záves */
         .curtain-anim {
             position: absolute;
             top: 2%;
