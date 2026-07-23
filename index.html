@@ -205,6 +205,27 @@
             margin-bottom: 10px;
         }
 
+        /* Štýl pre profil praktikantky */
+        .profile-title {
+            font-size: 1.4rem;
+            font-weight: bold;
+            color: #4a270b;
+            margin: 0 0 5px 0;
+        }
+
+        .profile-subtitle {
+            font-size: 1rem;
+            font-style: italic;
+            color: #5c3a21;
+            margin: 0 0 25px 0;
+        }
+
+        .profile-text {
+            font-size: 0.95rem;
+            line-height: 1.5;
+            margin: 0;
+        }
+
         /* Štýl pre kontakty na pergamene sovy */
         .contacts-list {
             display: flex;
@@ -283,7 +304,9 @@
 <script>
 const texts = {
     pergamen: "<h2>Dôležitý list</h2><p>Tento stredný pergamen na stole obsahuje tajné pokyny pre nadchádzajúce vyučovanie obrany proti čiernej mágii. Očakáva sa tvoja účasť o polnoci.</p>",
-    fotografia: "<h2>Vzácna spomienka</h2><p>Fotografia v zlatom ráme zachraňuje čarovné chvíle strávené v slnečných záhradách pri starom hrade.</p>",
+    fotografia: `<h2 class="profile-title">Marion G. Arrington</h2>
+                 <p class="profile-subtitle">praktikantka</p>
+                 <p class="profile-text">Som profesionálna tanečnica, no od začiatku tohto roka pôsobím v Bradaviciach na pozícií praktikantky. Mojim hlavným zameraním sú Lektvary, Obrana proti čiernej mágií a Kúzelnícke liečiteľstvo. Spoločne sa budeme stretávať na hodinách ZKV, ktorých absolvovanie je, nariadením Ministerstva mágie, povinným pre všetkých študentov školy.</p>`,
     sova: `<h2>Kontakty</h2>
            <div class="contacts-list">
                <div class="contact-item">
@@ -324,5 +347,4 @@ function closeText() {
 }
 </script>
 </body>
-</html>
 </html>
