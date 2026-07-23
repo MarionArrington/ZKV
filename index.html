@@ -57,66 +57,66 @@
             height: 28%;
         }
 
-        /* --- ANIMOVANÉ PRVKY --- */
+        /* --- OPRAVENÉ ANIMOVANÉ PRVKY --- */
 
-        /* 1. Žiara a blikanie sviečky (upravte top/left podľa polohy sviečky na obrázku) */
+        /* 1. Plameň sviečky - Zmeňte top/left podľa toho, kde je sviečka */
         .flame-glow {
             position: absolute;
-            top: 55%; /* Prispôsobte pozíciu sviečky */
-            left: 25%; /* Prispôsobte pozíciu sviečky */
-            width: 30px;
-            height: 30px;
-            background: radial-gradient(circle, rgba(255,165,0,0.8) 0%, rgba(255,69,0,0.3) 50%, transparent 80%);
+            top: 45%; 
+            left: 48%; 
+            width: 35px;
+            height: 35px;
+            background: radial-gradient(circle, rgba(255,200,50,0.9) 0%, rgba(255,100,0,0.5) 50%, transparent 80%);
             border-radius: 50%;
             pointer-events: none;
             z-index: 4;
-            animation: flicker 1.5s infinite alternate ease-in-out;
+            animation: flicker 1.2s infinite alternate ease-in-out;
         }
 
         @keyframes flicker {
-            0% { transform: scale(0.9); opacity: 0.7; }
-            50% { transform: scale(1.2); opacity: 1; }
-            100% { transform: scale(1.0); opacity: 0.8; }
+            0% { transform: scale(0.85); opacity: 0.6; }
+            50% { transform: scale(1.25); opacity: 1; }
+            100% { transform: scale(0.95); opacity: 0.7; }
         }
 
-        /* 2. Para zo šálky */
+        /* 2. Para zo šálky - Zmeňte top/left podľa toho, kde je šálka */
         .steam {
             position: absolute;
-            top: 70%; /* Prispôsobte pozíciu šálky */
-            left: 15%; /* Prispôsobte pozíciu šálky */
-            width: 20px;
-            height: 40px;
-            background: linear-gradient(to top, rgba(255,255,255,0.4), transparent);
+            top: 72%; 
+            left: 20%; 
+            width: 25px;
+            height: 50px;
+            background: linear-gradient(to top, rgba(255,255,255,0.6), transparent);
             border-radius: 50%;
             pointer-events: none;
             z-index: 4;
-            filter: blur(4px);
-            animation: riseSteam 3s infinite linear;
+            filter: blur(3px);
+            animation: riseSteam 2.5s infinite linear;
         }
 
         @keyframes riseSteam {
-            0% { transform: translateY(0) scaleX(0.8); opacity: 0; }
-            50% { opacity: 0.6; }
-            100% { transform: translateY(-40px) scaleX(1.4); opacity: 0; }
+            0% { transform: translateY(0) scaleX(0.7); opacity: 0; }
+            40% { opacity: 0.7; }
+            100% { transform: translateY(-50px) scaleX(1.5); opacity: 0; }
         }
 
-        /* 3. Pohyb závesu */
+        /* 3. Pohyb závesu - Zmeňte top/left/width/height podľa toho, kde je okno/záves */
         .curtain-anim {
             position: absolute;
-            top: 5%; /* Prispôsobte pozíciu okna/závesu */
-            left: 5%; /* Prispôsobte pozíciu okna/závesu */
+            top: 10%; 
+            left: 10%; 
             width: 15%;
-            height: 40%;
+            height: 35%;
             pointer-events: none;
             z-index: 4;
-            transform-origin: top left;
+            transform-origin: top center;
             animation: swayCurtain 4s infinite ease-in-out;
-            background: rgba(255, 255, 255, 0.03); /* Jemný priesvitný efekt pre záves */
+            background: linear-gradient(90deg, rgba(255,255,255,0.08), transparent);
         }
 
         @keyframes swayCurtain {
             0%, 100% { transform: rotate(0deg); }
-            50% { transform: rotate(3deg) skewX(2deg); }
+            50% { transform: rotate(4deg) skewX(3deg); }
         }
 
 
@@ -211,7 +211,7 @@
         <!-- Hlavný obrázok pracovne -->
         <img src="https://i.ibb.co/tT4pQm75/pracovna.png" alt="Pracovňa" class="main-image">
 
-        <!-- Animované prvky (sviečka, para, záves) -->
+        <!-- Animované prvky -->
         <div class="flame-glow"></div>
         <div class="steam"></div>
         <div class="curtain-anim"></div>
