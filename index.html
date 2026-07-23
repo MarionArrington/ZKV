@@ -80,46 +80,46 @@
             100% { transform: scale(0.9); opacity: 0.85; }
         }
 
-        /* Reálna hustá para nad šálkou (spoľahlivý CSS efekt) */
+        /* Výrazná a veľká para nad šálkou */
         .steam-container {
             position: absolute;
-            top: 52%;
-            left: 8%;
-            width: 40px;
-            height: 90px;
+            top: 48%;
+            left: 7%;
+            width: 50px;
+            height: 110px;
             pointer-events: none;
             z-index: 4;
-            filter: blur(6px);
+            filter: blur(5px);
         }
 
         .steam-particle {
             position: absolute;
             bottom: 0;
             left: 0;
-            width: 35px;
-            height: 35px;
-            background: rgba(255, 255, 255, 0.75);
+            width: 45px;
+            height: 45px;
+            background: rgba(255, 255, 255, 0.9);
             border-radius: 50%;
-            animation: riseRealisticSteam 2.2s infinite linear;
+            animation: riseRealisticSteam 2s infinite linear;
         }
 
         .steam-particle:nth-child(2) {
-            animation-delay: 1.1s;
-            width: 25px;
-            height: 25px;
-            left: 8px;
+            animation-delay: 1s;
+            width: 35px;
+            height: 35px;
+            left: 10px;
         }
 
         @keyframes riseRealisticSteam {
             0% {
-                transform: translateY(0) scale(0.5);
+                transform: translateY(0) scale(0.6);
                 opacity: 0;
             }
             30% {
-                opacity: 0.7;
+                opacity: 0.9;
             }
             100% {
-                transform: translateY(-80px) scale(1.8) skewX(10deg);
+                transform: translateY(-90px) scale(2.2) skewX(12deg);
                 opacity: 0;
             }
         }
@@ -211,6 +211,31 @@
             margin: 0;
         }
 
+        /* Štýl pre kontakty na pergamene sovy */
+        .contacts-list {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            width: 100%;
+            align-items: flex-start;
+            padding-left: 10px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 0.95rem;
+            color: #2b1705;
+        }
+
+        .contact-icon {
+            width: 28px;
+            height: 28px;
+            object-fit: contain;
+            border-radius: 50%;
+        }
+
         .close-btn {
             position: absolute;
             top: 8%;
@@ -238,7 +263,7 @@
         <!-- Animované prvky -->
         <div class="flame-glow"></div>
         
-        <!-- Reálna stúpajúca para -->
+        <!-- Výrazná stúpajúca para -->
         <div class="steam-container">
             <div class="steam-particle"></div>
             <div class="steam-particle"></div>
@@ -264,8 +289,22 @@
 <script>
 const texts = {
     pergamen: "<h2>Dôležitý list</h2><p>Tento stredný pergamen na stole obsahuje tajné pokyny pre nadchádzajúce vyučovanie obrany proti čiernej mágii. Očakáva sa tvoja účasť o polnoci.</p>",
-    fotografia: "<h2>Marion G. Arrington</h2><br><h1>praktikantka</h1><p>Fotografia v zlatom ráme zachraňuje čarovné chvíle strávené v slnečných záhradách pri starom hrade.</p>",
-    sova: "<h2>Kontakty:</h2><p>Vierna hrana sova pozorne stráži miestnosť a trpezlivo čaká, kým jej pripne na nohu dôležitý odkaz pre adresáta.</p>"
+    fotografia: "<h2>Vzácna spomienka</h2><p>Fotografia v zlatom ráme zachraňuje čarovné chvíle strávené v slnečných záhradách pri starom hrade.</p>",
+    sova: `<h2>Kontakty</h2>
+           <div class="contacts-list">
+               <div class="contact-item">
+                   <img src="https://i.ibb.co/68H8w45/1.png" alt="Email" class="contact-icon">
+                   <span>i.arden@revelio.cz</span>
+               </div>
+               <div class="contact-item">
+                   <img src="https://i.ibb.co/5W9jY2B/2.png" alt="Discord" class="contact-icon">
+                   <span>isabellearden</span>
+               </div>
+               <div class="contact-item">
+                   <img src="https://i.ibb.co/5W9jY2B/2.png" alt="Discord" class="contact-icon">
+                   <span>Ardenkin pavilón šeliem</span>
+               </div>
+           </div>`
 };
 
 function showText(target) {
