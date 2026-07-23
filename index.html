@@ -43,7 +43,6 @@
             height: 26%;
         }
 
-        /* Zväčšená oblasť pre fotografiu */
         .hotspot.fotografia {
             top: 35%;
             left: 70%;
@@ -58,7 +57,70 @@
             height: 28%;
         }
 
-        /* Modálne okno s vaším pergamendom */
+        /* --- ANIMOVANÉ PRVKY --- */
+
+        /* 1. Žiara a blikanie sviečky (upravte top/left podľa polohy sviečky na obrázku) */
+        .flame-glow {
+            position: absolute;
+            top: 55%; /* Prispôsobte pozíciu sviečky */
+            left: 25%; /* Prispôsobte pozíciu sviečky */
+            width: 30px;
+            height: 30px;
+            background: radial-gradient(circle, rgba(255,165,0,0.8) 0%, rgba(255,69,0,0.3) 50%, transparent 80%);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 4;
+            animation: flicker 1.5s infinite alternate ease-in-out;
+        }
+
+        @keyframes flicker {
+            0% { transform: scale(0.9); opacity: 0.7; }
+            50% { transform: scale(1.2); opacity: 1; }
+            100% { transform: scale(1.0); opacity: 0.8; }
+        }
+
+        /* 2. Para zo šálky */
+        .steam {
+            position: absolute;
+            top: 70%; /* Prispôsobte pozíciu šálky */
+            left: 15%; /* Prispôsobte pozíciu šálky */
+            width: 20px;
+            height: 40px;
+            background: linear-gradient(to top, rgba(255,255,255,0.4), transparent);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 4;
+            filter: blur(4px);
+            animation: riseSteam 3s infinite linear;
+        }
+
+        @keyframes riseSteam {
+            0% { transform: translateY(0) scaleX(0.8); opacity: 0; }
+            50% { opacity: 0.6; }
+            100% { transform: translateY(-40px) scaleX(1.4); opacity: 0; }
+        }
+
+        /* 3. Pohyb závesu */
+        .curtain-anim {
+            position: absolute;
+            top: 5%; /* Prispôsobte pozíciu okna/závesu */
+            left: 5%; /* Prispôsobte pozíciu okna/závesu */
+            width: 15%;
+            height: 40%;
+            pointer-events: none;
+            z-index: 4;
+            transform-origin: top left;
+            animation: swayCurtain 4s infinite ease-in-out;
+            background: rgba(255, 255, 255, 0.03); /* Jemný priesvitný efekt pre záves */
+        }
+
+        @keyframes swayCurtain {
+            0%, 100% { transform: rotate(0deg); }
+            50% { transform: rotate(3deg) skewX(2deg); }
+        }
+
+
+        /* --- MODÁLNE OKNO --- */
         .modal-backdrop {
             position: fixed;
             top: 0;
@@ -80,7 +142,6 @@
             opacity: 1;
         }
 
-        /* Kontajner pre obrázok pergamenu a text */
         .scroll-container {
             position: relative;
             width: 75%;
@@ -94,7 +155,6 @@
             filter: drop-shadow(0 15px 25px rgba(0,0,0,0.8));
         }
 
-        /* Text umiestnený presne na váš pergamen */
         .scroll-text-content {
             position: absolute;
             top: 18%;
@@ -151,12 +211,17 @@
         <!-- Hlavný obrázok pracovne -->
         <img src="https://i.ibb.co/tT4pQm75/pracovna.png" alt="Pracovňa" class="main-image">
 
+        <!-- Animované prvky (sviečka, para, záves) -->
+        <div class="flame-glow"></div>
+        <div class="steam"></div>
+        <div class="curtain-anim"></div>
+
         <!-- Interaktívne oblasti pre predmety -->
         <div class="hotspot pergamen" onclick="showText('pergamen')" title="Pergamen"></div>
         <div class="hotspot fotografia" onclick="showText('fotografia')" title="Fotografia"></div>
         <div class="hotspot sova" onclick="showText('sova')" title="Sova"></div>
 
-        <!-- Modálne okno s vaším novým pergamendom -->
+        <!-- Modálne okno s pergamendom -->
         <div id="modal-backdrop" class="modal-backdrop">
             <div class="scroll-container" onclick="event.stopPropagation()">
                 <button class="close-btn" onclick="closeText()">&times;</button>
@@ -183,7 +248,6 @@ function showText(target) {
     }
 }
 
-// Zatvorenie kliknutím mimo okna
 document.getElementById('modal-backdrop').addEventListener('click', function(event) {
     const backdrop = document.getElementById('modal-backdrop');
     if (event.target === backdrop) {
@@ -191,7 +255,6 @@ document.getElementById('modal-backdrop').addEventListener('click', function(eve
     }
 });
 
-// Zatvorenie cez krížik
 function closeText() {
     const backdrop = document.getElementById('modal-backdrop');
     backdrop.classList.remove('active');
