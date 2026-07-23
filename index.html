@@ -80,46 +80,46 @@
             100% { transform: scale(0.9); opacity: 0.85; }
         }
 
-        /* Výrazná a veľká para nad šálkou */
+        /* Extra výrazná a veľká para nad šálkou */
         .steam-container {
             position: absolute;
-            top: 48%;
-            left: 7%;
-            width: 50px;
-            height: 110px;
+            top: 45%;
+            left: 6%;
+            width: 60px;
+            height: 130px;
             pointer-events: none;
             z-index: 4;
-            filter: blur(5px);
+            filter: blur(6px);
         }
 
         .steam-particle {
             position: absolute;
             bottom: 0;
             left: 0;
-            width: 45px;
-            height: 45px;
-            background: rgba(255, 255, 255, 0.9);
+            width: 55px;
+            height: 55px;
+            background: rgba(255, 255, 255, 0.95);
             border-radius: 50%;
-            animation: riseRealisticSteam 2s infinite linear;
+            animation: riseRealisticSteam 1.8s infinite linear;
         }
 
         .steam-particle:nth-child(2) {
-            animation-delay: 1s;
-            width: 35px;
-            height: 35px;
-            left: 10px;
+            animation-delay: 0.9s;
+            width: 45px;
+            height: 45px;
+            left: 12px;
         }
 
         @keyframes riseRealisticSteam {
             0% {
-                transform: translateY(0) scale(0.6);
+                transform: translateY(0) scale(0.5);
                 opacity: 0;
             }
-            30% {
-                opacity: 0.9;
+            25% {
+                opacity: 0.95;
             }
             100% {
-                transform: translateY(-90px) scale(2.2) skewX(12deg);
+                transform: translateY(-110px) scale(2.6) skewX(15deg);
                 opacity: 0;
             }
         }
@@ -205,20 +205,14 @@
             margin-bottom: 10px;
         }
 
-        .scroll-text-content p {
-            font-size: 1rem;
-            line-height: 1.5;
-            margin: 0;
-        }
-
         /* Štýl pre kontakty na pergamene sovy */
         .contacts-list {
             display: flex;
             flex-direction: column;
-            gap: 10px;
+            gap: 12px;
             width: 100%;
             align-items: flex-start;
-            padding-left: 10px;
+            padding-left: 15px;
         }
 
         .contact-item {
@@ -230,8 +224,8 @@
         }
 
         .contact-icon {
-            width: 28px;
-            height: 28px;
+            width: 30px;
+            height: 30px;
             object-fit: contain;
             border-radius: 50%;
         }
@@ -263,7 +257,7 @@
         <!-- Animované prvky -->
         <div class="flame-glow"></div>
         
-        <!-- Výrazná stúpajúca para -->
+        <!-- Veľká a výrazná stúpajúca para -->
         <div class="steam-container">
             <div class="steam-particle"></div>
             <div class="steam-particle"></div>
@@ -293,15 +287,15 @@ const texts = {
     sova: `<h2>Kontakty</h2>
            <div class="contacts-list">
                <div class="contact-item">
-                   <img src="https://i.ibb.co/68H8w45/1.png" alt="Email" class="contact-icon">
+                   <img src="https://i.ibb.co/GfNHdQt8/1.png" alt="Email" class="contact-icon">
                    <span>i.arden@revelio.cz</span>
                </div>
                <div class="contact-item">
-                   <img src="https://i.ibb.co/5W9jY2B/2.png" alt="Discord" class="contact-icon">
+                   <img src="https://i.ibb.co/5WyLF5X8/2.png" alt="Discord" class="contact-icon">
                    <span>isabellearden</span>
                </div>
                <div class="contact-item">
-                   <img src="https://i.ibb.co/5W9jY2B/2.png" alt="Discord" class="contact-icon">
+                   <img src="https://i.ibb.co/5WyLF5X8/2.png" alt="Discord" class="contact-icon">
                    <span>Ardenkin pavilón šeliem</span>
                </div>
            </div>`
@@ -330,4 +324,5 @@ function closeText() {
 }
 </script>
 </body>
+</html>
 </html>
