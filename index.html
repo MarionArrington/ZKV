@@ -33,7 +33,7 @@
         </div>
     </div>
 <script>
-// Tu sú definované texty pre jednotlivé klikacie oblasti
+// Tieto texty musia byt definovane, aby skript fungoval!
 const texts = {
     pergamen: "Tento stredný pergamen na stole obsahuje tajné pokyny pre nadchádzajúce vyučovanie obrany proti čiernej mágii. Očakáva sa tvoja účasť o polnoci.",
     fotografia: "Fotografia v zlatom ráme zachraňuje čarovné chvíle strávené v slnečných záhradách pri starom hrade.",
@@ -58,7 +58,7 @@ document.getElementById('modal-backdrop').addEventListener('click', function(eve
     }
 });
 
-// Zatvorenie cez krížik
+// Zatvorenie cez krížik pomocou funkcie closeText()
 function closeText() {
     const backdrop = document.getElementById('modal-backdrop');
     backdrop.classList.remove('active');
@@ -66,7 +66,3 @@ function closeText() {
 </script>
 </body>
 </html>
-</body>
-</html>
-
-
