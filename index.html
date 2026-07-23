@@ -29,13 +29,11 @@
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7);
         }
 
-        /* Klikacie oblasti (hotspoty) - pridal som pre istotu viditeľný rám, aby ste videli, na čo klikáte */
+        /* Klikacie oblasti (hotspoty) */
         .hotspot {
             position: absolute;
             cursor: pointer;
             z-index: 5;
-            border: 2px dashed rgba(255, 0, 0, 0.6); /* Tu môžete neskôr zmazať orámovanie, keď to bude fungovať */
-            background: rgba(255, 0, 0, 0.1);
         }
 
         .hotspot.pergamen {
@@ -45,11 +43,12 @@
             height: 26%;
         }
 
+        /* Zväčšená oblasť pre fotografiu */
         .hotspot.fotografia {
-            top: 40%;
-            left: 76%;
-            width: 22%;
-            height: 12%;
+            top: 35%;
+            left: 70%;
+            width: 28%;
+            height: 20%;
         }
 
         .hotspot.sova {
@@ -59,24 +58,14 @@
             height: 28%;
         }
 
-        .hotspot-flowers {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 42%;
-            height: 55%;
-            z-index: 5;
-            pointer-events: none;
-        }
-
-        /* Modálne okno (Starý pergamen) */
+        /* Modálne okno s vaším pergamendom */
         .modal-backdrop {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.65);
+            background: rgba(0, 0, 0, 0.75);
             display: flex;
             justify-content: center;
             align-items: center;
@@ -91,41 +80,63 @@
             opacity: 1;
         }
 
-        .scroll-modal {
-            background: linear-gradient(135deg, #f7f0dc, #e5d1ab);
-            border: 4px solid #7c4d25;
-            border-radius: 10px;
-            width: 60%;
-            max-width: 480px;
-            padding: 35px 30px;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.7), inset 0 0 50px rgba(120, 75, 30, 0.2);
-            color: #2b1705;
+        /* Kontajner pre obrázok pergamenu a text */
+        .scroll-container {
             position: relative;
+            width: 75%;
+            max-width: 650px;
+        }
+
+        .scroll-image {
+            width: 100%;
+            height: auto;
+            display: block;
+            filter: drop-shadow(0 15px 25px rgba(0,0,0,0.8));
+        }
+
+        /* Text umiestnený presne na váš pergamen */
+        .scroll-text-content {
+            position: absolute;
+            top: 18%;
+            left: 15%;
+            width: 70%;
+            height: 64%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
             text-align: center;
-        }
-
-        .scroll-modal h2 {
-            margin-top: 0;
+            color: #2b1705;
             font-family: 'Georgia', serif;
-            color: #4a270b;
-            border-bottom: 2px solid #b8915c;
-            padding-bottom: 8px;
+            overflow-y: auto;
+            padding: 10px;
         }
 
-        .scroll-modal p {
-            font-size: 1.05rem;
-            line-height: 1.6;
+        .scroll-text-content h2 {
+            margin-top: 0;
+            color: #4a270b;
+            font-size: 1.4rem;
+            border-bottom: 2px solid #b8915c;
+            padding-bottom: 5px;
+            margin-bottom: 10px;
+        }
+
+        .scroll-text-content p {
+            font-size: 1rem;
+            line-height: 1.5;
+            margin: 0;
         }
 
         .close-btn {
             position: absolute;
-            top: 10px;
-            right: 15px;
+            top: 8%;
+            right: 12%;
             background: none;
             border: none;
-            font-size: 26px;
+            font-size: 28px;
             cursor: pointer;
             color: #5c3a21;
+            z-index: 10;
             transition: color 0.2s;
         }
 
@@ -145,11 +156,12 @@
         <div class="hotspot fotografia" onclick="showText('fotografia')" title="Fotografia"></div>
         <div class="hotspot sova" onclick="showText('sova')" title="Sova"></div>
 
-        <!-- Modálne okno (starý pergamen) s tmavým pozadím -->
+        <!-- Modálne okno s vaším novým pergamendom -->
         <div id="modal-backdrop" class="modal-backdrop">
-            <div class="scroll-modal" onclick="event.stopPropagation()">
+            <div class="scroll-container" onclick="event.stopPropagation()">
                 <button class="close-btn" onclick="closeText()">&times;</button>
-                <div id="text-content"></div>
+                <img src="https://i.ibb.co/7xYQz5dq/111ab02f-6b6b-4909-bda8-4ce4549fafc9-removebg-preview.png" alt="Pergamen" class="scroll-image">
+                <div id="text-content" class="scroll-text-content"></div>
             </div>
         </div>
     </div>
