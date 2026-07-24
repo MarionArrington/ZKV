@@ -145,7 +145,6 @@
             pointer-events: none;
             z-index: 4;
             background: linear-gradient(90deg, rgba(255,255,255,0.15), transparent);
-            /* Statický záves bez pohybu */
         }
 
         /* --- MODÁLNE OKNO (Pomalé rozbaľovanie zhora nadol) --- */
@@ -396,8 +395,9 @@
     </div>
 
 <script>
-// Správny priamy Raw odkaz na tvoj zvuk papiera z GitHubu
+// Zvukové súbory z tvojho GitHubu
 const paperSound = new Audio('https://raw.githubusercontent.com/MarionArrington/ZKV/main/papier.wav');
+const owlSound = new Audio('https://raw.githubusercontent.com/MarionArrington/ZKV/main/sova.wav');
 
 const texts = {
     pergamen: "<h2>Dôležitý list</h2><p>Tento stredný pergamen na stole obsahuje tajné pokyny pre nadchádzajúce vyučovanie obrany proti čiernej mágii. Očakáva sa tvoja účasť o polnoci.</p>",
@@ -440,12 +440,13 @@ function showText(target) {
         textContent.innerHTML = texts[target];
         backdrop.classList.add('active');
         
-        // Prehratie zvuku len pri pergamene (alebo celkovo pri kliknutí na hociktorý hotspot)
+        // Prehratie správneho zvuku podľa kliknutého objektu
         if (target === 'pergamen') {
             paperSound.currentTime = 0;
-            paperSound.play().catch(error => {
-                console.log("Prehliadač zablokoval prehratie zvuku:", error);
-            });
+            paperSound.play().catch(error => console.log("Zvuk papiera zablokovaný:", error));
+        } else if (target === 'sova') {
+            owlSound.currentTime = 0;
+            owlSound.play().catch(error => console.log("Zvuk sovy zablokovaný:", error));
         }
     }
 }
