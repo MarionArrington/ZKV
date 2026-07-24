@@ -144,19 +144,11 @@
             height: 42%;
             pointer-events: none;
             z-index: 4;
-            transform-origin: top left;
             background: linear-gradient(90deg, rgba(255,255,255,0.15), transparent);
-            animation: swayCurtainWithBounce 4s infinite ease-in-out;
+            /* Pohyb závesu odstránený – statický prvok */
         }
 
-        @keyframes swayCurtainWithBounce {
-            0%, 100% { transform: rotate(0deg) skewX(0deg); }
-            40% { transform: rotate(5deg) skewX(3deg); }
-            55% { transform: rotate(3deg) skewX(1deg); }
-            70% { transform: rotate(4.5deg) skewX(2deg); }
-        }
-
-        /* --- MODÁLNE OKNO (Rozbaľovanie zhora nadol) --- */
+        /* --- MODÁLNE OKNO (Spomalené rozbaľovanie zhora nadol) --- */
         .modal-backdrop {
             position: fixed;
             top: 0;
@@ -169,7 +161,7 @@
             align-items: center;
             visibility: hidden;
             opacity: 0;
-            transition: opacity 0.3s ease, visibility 0.3s ease;
+            transition: opacity 0.4s ease, visibility 0.4s ease;
             z-index: 100;
         }
 
@@ -183,12 +175,12 @@
             width: 90%;
             max-width: 850px;
             
-            /* Efekt zrolovania/zbalenia: zmenšenie výšky na 0% od vrchu (zhora nadol) */
+            /* Pomalšie rozbalenie zhora nadol (predĺžený časový interval na 0.9s) */
             transform-origin: top center;
             transform: scaleY(0);
             opacity: 0;
             
-            transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.3s ease;
+            transition: transform 0.9s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.5s ease;
         }
 
         .modal-backdrop.active .scroll-container {
@@ -219,9 +211,9 @@
             overflow-y: auto;
             padding: 10px;
             
-            /* Text sa objaví až po rozbalení pergamenu */
+            /* Text sa zjaví až po kompletnom rozbalení pergamenu */
             opacity: 0;
-            transition: opacity 0.3s ease 0.25s;
+            transition: opacity 0.4s ease 0.5s;
         }
 
         .modal-backdrop.active .scroll-text-content {
