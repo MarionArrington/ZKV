@@ -34,7 +34,7 @@
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7);
         }
 
-        /* Plynulé žmurknutie - ZMENENÉ: odstránený transform, ponechaný len opacity pre stabilitu */
+        /* Plynulé žmurknutie - iba opacity, žiadne zmeny mierky (scale) */
         .owl-blink-layer {
             position: absolute;
             top: 0;
@@ -46,19 +46,13 @@
             background-repeat: no-repeat;
             pointer-events: none;
             z-index: 2;
-            opacity: 0; /* Pôvodne skryté */
-            /* Odstránený transform-origin a transform zo základného stavu */
+            opacity: 0; 
             animation: stableBlink 6s infinite ease-in-out;
         }
 
-        /* ZMENENÉ KĽÚČOVÉ SNÍMKY: Iba opacity, žiadne zmeny mierky (scale), ktoré spôsobujú poskakovanie */
         @keyframes stableBlink {
-            0%, 84%, 100% { 
-                opacity: 0; 
-            }
-            87%, 91% { 
-                opacity: 1; 
-            }
+            0%, 84%, 100% { opacity: 0; }
+            87%, 91% { opacity: 1; }
         }
 
         /* Klikacie oblasti (hotspoty) */
@@ -89,7 +83,7 @@
             height: 28%;
         }
 
-        /* --- ANIMOVANÉ PRVKY (nezmenené) --- */
+        /* --- ANIMOVANÉ PRVKY --- */
 
         .flame-glow {
             position: absolute;
@@ -141,17 +135,9 @@
         }
 
         @keyframes riseNaturalSteam {
-            0% {
-                transform: translate(0, 0) scale(0.4);
-                opacity: 0;
-            }
-            20% {
-                opacity: 0.7;
-            }
-            100% {
-                transform: translate(15px, -110px) scale(2.2) rotate(8deg);
-                opacity: 0;
-            }
+            0% { transform: translate(0, 0) scale(0.4); opacity: 0; }
+            20% { opacity: 0.7; }
+            100% { transform: translate(15px, -110px) scale(2.2) rotate(8deg); opacity: 0; }
         }
 
         .curtain-anim {
@@ -174,7 +160,7 @@
             70% { transform: rotate(4.5deg) skewX(2deg); }
         }
 
-        /* --- MODÁLNE OKNO (nezmenené) --- */
+        /* --- MODÁLNE OKNO (Opravená animácia rozvíjania) --- */
         .modal-backdrop {
             position: fixed;
             top: 0;
@@ -185,14 +171,16 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            visibility: hidden;
+            /* Zmenené z visibility:hidden na display:none, aby nezeralo miesto kým je skryté */
+            display: none; 
             opacity: 0;
-            transition: opacity 0.35s ease, visibility 0.35s ease;
+            transition: opacity 0.35s ease;
             z-index: 100;
+            perspective: 1000px; /* Pre 3D efekt */
         }
 
         .modal-backdrop.active {
-            visibility: visible;
+            display: flex; /* Zviditeľnenie */
             opacity: 1;
         }
 
@@ -200,14 +188,17 @@
             position: relative;
             width: 90%;
             max-width: 850px;
-            transform: scaleY(0);
-            transform-origin: center center;
+            
+            /* Kľúčové zmeny pre efekt rozvinutia */
+            transform-origin: 50% 0%; /* Osa otáčania je úplne hore (vrch pergamenu) */
+            transform: rotateX(90deg) scale(0.8); /* Začína zvinuté a položené naplocho */
             opacity: 0;
-            transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.4s ease;
+            
+            transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.4s ease;
         }
 
         .modal-backdrop.active .scroll-container {
-            transform: scaleY(1);
+            transform: rotateX(0deg) scale(1); /* Otvorí sa do roviny a zväčší na 100% */
             opacity: 1;
         }
 
@@ -233,8 +224,10 @@
             font-family: 'Georgia', serif;
             overflow-y: auto;
             padding: 10px;
+            
+            /* Text sa objaví až po dokončení animácie kontajnera */
             opacity: 0;
-            transition: opacity 0.3s ease 0.25s;
+            transition: opacity 0.3s ease 0.3s; 
         }
 
         .modal-backdrop.active .scroll-text-content {
@@ -250,163 +243,44 @@
             margin-bottom: 10px;
         }
 
-        .profile-layout {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 25px;
-            width: 100%;
-            text-align: left;
-        }
-
-        .profile-text-side {
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .profile-title {
-            font-size: 1.45rem;
-            font-weight: bold;
-            color: #4a270b;
-            margin: 0 0 4px 0;
-        }
-
-        .profile-subtitle {
-            font-size: 1.05rem;
-            font-style: italic;
-            color: #5c3a21;
-            margin: 0 0 20px 0;
-        }
-
-        .profile-text {
-            font-size: 0.95rem;
-            line-height: 1.5;
-            margin: 0;
-        }
-
-        .profile-photos-side {
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-            align-items: flex-end;
-            position: relative;
-            min-width: 190px;
-        }
-
-        .photo-main {
-            width: 155px;
-            height: 190px;
-            object-fit: cover;
-            border: 4px solid #fff;
-            box-shadow: 0 6px 20px rgba(0,0,0,0.35);
-            z-index: 2;
-        }
-
-        .photo-secondary {
-            width: 115px;
-            height: 115px;
-            object-fit: cover;
-            border: 4px solid #fff;
-            box-shadow: 0 6px 20px rgba(0,0,0,0.35);
-            position: absolute;
-            top: 105px;
-            right: 105px;
-            z-index: 3;
-        }
-
-        .contacts-wrapper {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            width: 100%;
-            gap: 10px;
-        }
-
-        .contacts-intro {
-            font-size: 0.95rem;
-            font-style: italic;
-            color: #5c3a21;
-            margin-bottom: 5px;
-            text-align: center;
-        }
-
-        .contacts-list {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-            width: 100%;
-            max-width: 400px;
-            align-items: flex-start;
-        }
-
-        .contact-item {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            font-size: 0.95rem;
-            color: #2b1705;
-        }
-
-        .contact-icon {
-            width: 26px;
-            height: 26px;
-            object-fit: contain;
-            border-radius: 50%;
-        }
-
+        /* Ostatné štýly (profily, kontakty, tlačidlo) ostávajú nezmenené */
+        .profile-layout { display: flex; align-items: center; justify-content: space-between; gap: 25px; width: 100%; text-align: left; }
+        .profile-text-side { flex: 1; display: flex; flex-direction: column; }
+        .profile-title { font-size: 1.45rem; font-weight: bold; color: #4a270b; margin: 0 0 4px 0; }
+        .profile-subtitle { font-size: 1.05rem; font-style: italic; color: #5c3a21; margin: 0 0 20px 0; }
+        .profile-text { font-size: 0.95rem; line-height: 1.5; margin: 0; }
+        .profile-photos-side { display: flex; flex-direction: column; gap: 12px; align-items: flex-end; position: relative; min-width: 190px; }
+        .photo-main { width: 155px; height: 190px; object-fit: cover; border: 4px solid #fff; box-shadow: 0 6px 20px rgba(0,0,0,0.35); z-index: 2; }
+        .photo-secondary { width: 115px; height: 115px; object-fit: cover; border: 4px solid #fff; box-shadow: 0 6px 20px rgba(0,0,0,0.35); position: absolute; top: 105px; right: 105px; z-index: 3; }
+        .contacts-wrapper { display: flex; flex-direction: column; align-items: center; width: 100%; gap: 10px; }
+        .contacts-intro { font-size: 0.95rem; font-style: italic; color: #5c3a21; margin-bottom: 5px; text-align: center; }
+        .contacts-list { display: flex; flex-direction: column; gap: 10px; width: 100%; max-width: 400px; align-items: flex-start; }
+        .contact-item { display: flex; align-items: center; gap: 12px; font-size: 0.95rem; color: #2b1705; }
+        .contact-icon { width: 26px; height: 26px; object-fit: contain; border-radius: 50%; }
         .close-btn {
-            position: absolute;
-            top: 6%;
-            right: 10%;
-            background: rgba(92, 58, 33, 0.15);
-            border: 2px solid #5c3a21;
-            border-radius: 50%;
-            width: 42px;
-            height: 42px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-size: 32px;
-            line-height: 1;
-            cursor: pointer;
-            color: #4a270b;
-            z-index: 10;
-            transition: all 0.2s ease;
+            position: absolute; top: 6%; right: 10%; background: rgba(92, 58, 33, 0.15);
+            border: 2px solid #5c3a21; border-radius: 50%; width: 42px; height: 42px;
+            display: flex; justify-content: center; align-items: center; font-size: 32px;
+            line-height: 1; cursor: pointer; color: #4a270b; z-index: 10; transition: all 0.2s ease;
         }
-
-        .close-btn:hover {
-            background: #5c3a21;
-            color: #fff;
-            transform: scale(1.1);
-        }
+        .close-btn:hover { background: #5c3a21; color: #fff; transform: scale(1.1); }
     </style>
 </head>
 <body>
 
     <div class="workspace-container" id="workspaceContainer">
-        <!-- Hlavný obrázok pracovne (podklad) -->
         <img src="https://i.ibb.co/tT4pQm75/pracovna.png" alt="Pracovňa" class="main-image">
-
-        <!-- Vrstva so zatvorenými očami - BEZ POSKOČENIA -->
         <div class="owl-blink-layer"></div>
-
-        <!-- Animované prvky -->
         <div class="flame-glow"></div>
-        
         <div class="steam-container">
             <div class="steam-particle"></div>
             <div class="steam-particle"></div>
         </div>
-
         <div class="curtain-anim"></div>
-
-        <!-- Interaktívne oblasti pre predmety -->
         <div class="hotspot pergamen" onclick="showText('pergamen')" title="Pergamen"></div>
         <div class="hotspot fotografia" onclick="showText('fotografia')" title="Fotografia"></div>
         <div class="hotspot sova" onclick="showText('sova')" title="Sova"></div>
 
-        <!-- Modálne okno s pergamendom -->
         <div id="modal-backdrop" class="modal-backdrop" onclick="closeText()">
             <div class="scroll-container" onclick="event.stopPropagation()">
                 <button class="close-btn" onclick="closeText()">&times;</button>
@@ -425,4 +299,11 @@ const texts = {
                         <p class="profile-subtitle">praktikantka</p>
                         <p class="profile-text">Som profesionálna tanečnica, no od začiatku tohto roka pôsobím v Bradaviciach na pozícií praktikantky. Mojim hlavným zameraním sú Lektvary, Obrana proti čiernej mágií a Kúzelnícke liečiteľstvo. Spoločne sa budeme stretávať na hodinách ZKV, ktorých absolvovanie je, nariadením Ministerstva mágie, povinným pre všetkých študentov školy.</p>
                     </div>
-                    <div class="profile-photos-
+                    <div class="profile-photos-side">
+                        <img src="https://i.ibb.co/HvYD9RR/740full-mariia-arsentieva.jpg" alt="Marion hlavná" class="photo-main">
+                        <img src="https://i.ibb.co/nsF6x8Pj/ZABS4-Ath-400x400.jpg" alt="Marion portrét" class="photo-secondary">
+                    </div>
+                   </div>`,
+    sova: `<h2>Sovička a odkazy</h2>
+           <div class="contacts-wrapper">
+               <p class="contacts-intro">Ak mi chceš niečo odkázať, pošli sovou list alebo ma zastihni tu:</p>
