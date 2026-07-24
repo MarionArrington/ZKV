@@ -13,13 +13,17 @@
             min-height: 100vh;
             margin: 0;
             font-family: 'Georgia', serif;
-            overflow: auto;
+            overflow: hidden; /* Skrytie pretŕčania pri parallaexe */
         }
 
         .workspace-container {
             position: relative;
             max-width: 1000px;
             width: 100%;
+            /* Parallax transformácia, ktorá sa bude dynamicky meniť cez JS */
+            transform: translate(0px, 0px);
+            transition: transform 0.1s ease-out;
+            will-change: transform;
         }
 
         .main-image {
@@ -30,7 +34,7 @@
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7);
         }
 
-        /* Plynulé žmurknutie kombinujúce opacity a jemné zmenšenie výšky viečok pre realistický efekt */
+        /* Plynulé žmurknutie - ZMENENÉ: odstránený transform, ponechaný len opacity pre stabilitu */
         .owl-blink-layer {
             position: absolute;
             top: 0;
@@ -42,20 +46,18 @@
             background-repeat: no-repeat;
             pointer-events: none;
             z-index: 2;
-            opacity: 0;
-            transform: scaleY(0.95);
-            transform-origin: top center;
-            animation: naturalBlink 6s infinite ease-in-out;
+            opacity: 0; /* Pôvodne skryté */
+            /* Odstránený transform-origin a transform zo základného stavu */
+            animation: stableBlink 6s infinite ease-in-out;
         }
 
-        @keyframes naturalBlink {
+        /* ZMENENÉ KĽÚČOVÉ SNÍMKY: Iba opacity, žiadne zmeny mierky (scale), ktoré spôsobujú poskakovanie */
+        @keyframes stableBlink {
             0%, 84%, 100% { 
                 opacity: 0; 
-                transform: scaleY(0.9);
             }
             87%, 91% { 
                 opacity: 1; 
-                transform: scaleY(1);
             }
         }
 
@@ -87,7 +89,7 @@
             height: 28%;
         }
 
-        /* --- ANIMOVANÉ PRVKY --- */
+        /* --- ANIMOVANÉ PRVKY (nezmenené) --- */
 
         .flame-glow {
             position: absolute;
@@ -172,7 +174,7 @@
             70% { transform: rotate(4.5deg) skewX(2deg); }
         }
 
-        /* --- MODÁLNE OKNO --- */
+        /* --- MODÁLNE OKNO (nezmenené) --- */
         .modal-backdrop {
             position: fixed;
             top: 0;
@@ -382,11 +384,11 @@
 </head>
 <body>
 
-    <div class="workspace-container">
+    <div class="workspace-container" id="workspaceContainer">
         <!-- Hlavný obrázok pracovne (podklad) -->
         <img src="https://i.ibb.co/tT4pQm75/pracovna.png" alt="Pracovňa" class="main-image">
 
-        <!-- Vrstva so zatvorenými očami s plynulým prirodzeným žmurkaním -->
+        <!-- Vrstva so zatvorenými očami - BEZ POSKOČENIA -->
         <div class="owl-blink-layer"></div>
 
         <!-- Animované prvky -->
@@ -423,45 +425,4 @@ const texts = {
                         <p class="profile-subtitle">praktikantka</p>
                         <p class="profile-text">Som profesionálna tanečnica, no od začiatku tohto roka pôsobím v Bradaviciach na pozícií praktikantky. Mojim hlavným zameraním sú Lektvary, Obrana proti čiernej mágií a Kúzelnícke liečiteľstvo. Spoločne sa budeme stretávať na hodinách ZKV, ktorých absolvovanie je, nariadením Ministerstva mágie, povinným pre všetkých študentov školy.</p>
                     </div>
-                    <div class="profile-photos-side">
-                        <img src="https://i.ibb.co/HvYD9RR/740full-mariia-arsentieva.jpg" alt="Marion hlavná" class="photo-main">
-                        <img src="https://i.ibb.co/nsF6x8Pj/ZABS4-Ath-400x400.jpg" alt="Marion portrét" class="photo-secondary">
-                    </div>
-                   </div>`,
-    sova: `<h2>Sovička a odkazy</h2>
-           <div class="contacts-wrapper">
-               <p class="contacts-intro">Ak mi chceš niečo odkázať, pošli sovou list alebo ma zastihni tu:</p>
-               <div class="contacts-list">
-                   <div class="contact-item">
-                       <img src="https://i.ibb.co/GfNHdQt8/1.png" alt="Email" class="contact-icon">
-                       <span>i.arden@revelio.cz</span>
-                   </div>
-                   <div class="contact-item">
-                       <img src="https://i.ibb.co/5WyLF5X8/2.png" alt="Discord" class="contact-icon">
-                       <span>isabellearden</span>
-                   </div>
-                   <div class="contact-item">
-                       <img src="https://i.ibb.co/5WyLF5X8/2.png" alt="Discord" class="contact-icon">
-                       <span>Ardenkin pavilón šeliem</span>
-                   </div>
-               </div>
-           </div>`
-};
-
-function showText(target) {
-    const backdrop = document.getElementById('modal-backdrop');
-    const textContent = document.getElementById('text-content');
-
-    if (texts[target]) {
-        textContent.innerHTML = texts[target];
-        backdrop.classList.add('active');
-    }
-}
-
-function closeText() {
-    const backdrop = document.getElementById('modal-backdrop');
-    backdrop.classList.remove('active');
-}
-</script>
-</body>
-</html>
+                    <div class="profile-photos-
