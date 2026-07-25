@@ -30,7 +30,7 @@
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7);
         }
 
-        /* Plynulé žmurknutie - stabilné bez poskakovania */
+        /* Plynulé žmurknutie */
         .owl-blink-layer {
             position: absolute;
             top: 0;
@@ -51,12 +51,11 @@
             87%, 91% { opacity: 1; }
         }
 
-        /* Presne nastavené hotspoty podľa tvojho obrázka */
+        /* Klikacie oblasti (hotspoty) */
         .hotspot {
             position: absolute;
             cursor: pointer;
             z-index: 5;
-            /* border: 1px dashed red; */ /* Odkomentuj pre kontrolu oblastí */
         }
 
         .hotspot.hodiny {
@@ -83,14 +82,14 @@
         .hotspot.fotografia {
             top: 38%;
             left: 76%;
-            width: 22%T;
+            width: 22%;
             height: 38%;
         }
 
         .hotspot.sova {
             top: 9%;
             left: 71%;
-            width: 13%T;
+            width: 13%;
             height: 29%;
         }
 
@@ -194,6 +193,11 @@
             transition: transform 0.9s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.5s ease;
         }
 
+        /* Špeciálna trieda pre menší pergamen (hodiny) */
+        .scroll-container.small-scroll {
+            max-width: 450px;
+        }
+
         .modal-backdrop.active .scroll-container {
             transform: scaleY(1);
             opacity: 1;
@@ -238,19 +242,98 @@
             margin-bottom: 10px;
         }
 
-        .profile-layout { display: flex; align-items: center; justify-content: space-between; gap: 25px; width: 100%; text-align: left; }
-        .profile-text-side { flex: 1; display: flex; flex-direction: column; }
-        .profile-title { font-size: 1.45rem; font-weight: bold; color: #4a270b; margin: 0 0 4px 0; }
-        .profile-subtitle { font-size: 1.05rem; font-style: italic; color: #5c3a21; margin: 0 0 20px 0; }
-        .profile-text { font-size: 0.95rem; line-height: 1.5; margin: 0; }
-        .profile-photos-side { display: flex; flex-direction: column; gap: 12px; align-items: flex-end; position: relative; min-width: 190px; }
-        .photo-main { width: 155px; height: 190px; object-fit: cover; border: 4px solid #fff; box-shadow: 0 6px 20px rgba(0,0,0,0.35); z-index: 2; }
-        .photo-secondary { width: 115px; height: 115px; object-fit: cover; border: 4px solid #fff; box-shadow: 0 6px 20px rgba(0,0,0,0.35); position: absolute; top: 105px; right: 105px; z-index: 3; }
-        .contacts-wrapper { display: flex; flex-direction: column; align-items: center; width: 100%; gap: 10px; }
-        .contacts-intro { font-size: 0.95rem; font-style: italic; color: #5c3a21; margin-bottom: 5px; text-align: center; }
-        .contacts-list { display: flex; flex-direction: column; gap: 10px; width: 100%; max-width: 400px; align-items: flex-start; }
-        .contact-item { display: flex; align-items: center; gap: 12px; font-size: 0.95rem; color: #2b1705; }
-        .contact-icon { width: 26px; height: 26px; object-fit: contain; border-radius: 50%; }
+        .profile-layout { 
+            display: flex; 
+            align-items: center; 
+            justify-content: space-between; 
+            gap: 25px; 
+            width: 100%; 
+            text-align: left; 
+        }
+        .profile-text-side { 
+            flex: 1; 
+            display: flex; 
+            flex-direction: column; 
+        }
+        .profile-title { 
+            font-size: 1.45rem; 
+            font-weight: bold; 
+            color: #4a270b; 
+            margin: 0 0 4px 0; 
+        }
+        .profile-subtitle { 
+            font-size: 1.05rem; 
+            font-style: italic; 
+            color: #5c3a21; 
+            margin: 0 0 20px 0; 
+        }
+        .profile-text { 
+            font-size: 0.95rem; 
+            line-height: 1.5; 
+            margin: 0; 
+        }
+        .profile-photos-side { 
+            display: flex; 
+            flex-direction: column; 
+            gap: 12px; 
+            align-items: flex-end; 
+            position: relative; 
+            min-width: 190px; 
+        }
+        .photo-main { 
+            width: 155px; 
+            height: 190px; 
+            object-fit: cover; 
+            border: 4px solid #fff; 
+            box-shadow: 0 6px 20px rgba(0,0,0,0.35); 
+            z-index: 2; 
+        }
+        .photo-secondary { 
+            width: 115px; 
+            height: 115px; 
+            object-fit: cover; 
+            border: 4px solid #fff; 
+            box-shadow: 0 6px 20px rgba(0,0,0,0.35); 
+            position: absolute; 
+            top: 105px; 
+            right: 105px; 
+            z-index: 3; 
+        }
+        .contacts-wrapper { 
+            display: flex; 
+            flex-direction: column; 
+            align-items: center; 
+            width: 100%; 
+            gap: 10px; 
+        }
+        .contacts-intro { 
+            font-size: 0.95rem; 
+            font-style: italic; 
+            color: #5c3a21; 
+            margin-bottom: 5px; 
+            text-align: center; 
+        }
+        .contacts-list { 
+            display: flex; 
+            flex-direction: column; 
+            gap: 10px; 
+            width: 100%; 
+            max-width: 400px; 
+            align-items: flex-start; 
+        }
+        .contact-item { 
+            display: flex; 
+            align-items: center; 
+            gap: 12px; 
+            font-size: 0.95rem; 
+            color: #2b1705; 
+        }
+        .contact-icon { 
+            width: 26px; 
+            height: 26px; 
+            object-fit: contain; 
+            border-radius: 50%; 
+        }
 
         .close-btn {
             position: absolute;
@@ -291,7 +374,6 @@
         </div>
         <div class="curtain-anim"></div>
 
-        <!-- Hotspoty umiestnené presne podľa obrázka -->
         <div class="hotspot hodiny" onclick="showText('hodiny')" title="Hodiny"></div>
         <div class="hotspot salka" onclick="showText('salka')" title="Šálka"></div>
         <div class="hotspot pergamen" onclick="showText('pergamen')" title="Pergamen"></div>
@@ -299,7 +381,7 @@
         <div class="hotspot sova" onclick="showText('sova')" title="Sova"></div>
 
         <div id="modal-backdrop" class="modal-backdrop" onclick="closeText()">
-            <div class="scroll-container" onclick="event.stopPropagation()">
+            <div class="scroll-container" id="scroll-box" onclick="event.stopPropagation()">
                 <button class="close-btn" onclick="closeText()">&times;</button>
                 <img src="https://i.ibb.co/7xYQz5dq/111ab02f-6b6b-4909-bda8-4ce4549fafc9-removebg-preview.png" alt="Pergamen" class="scroll-image">
                 <div id="text-content" class="scroll-text-content"></div>
@@ -312,6 +394,8 @@ const paperSound = new Audio('https://raw.githubusercontent.com/MarionArrington/
 const owlSound = new Audio('https://raw.githubusercontent.com/MarionArrington/ZKV/main/sova.wav');
 const cupSound = new Audio('https://raw.githubusercontent.com/MarionArrington/ZKV/main/salka.wav');
 const clockSound = new Audio('https://raw.githubusercontent.com/MarionArrington/ZKV/main/hodiny.wav');
+
+let clockTimeout;
 
 const texts = {
     pergamen: "<h2>Dôležitý list</h2><p>Tento stredný pergamen na stole obsahuje tajné pokyny pre nadchádzajúce vyučovanie obrany proti čiernej mágii. Očakáva sa tvoja účasť o polnoci.</p>",
@@ -350,8 +434,11 @@ const texts = {
 function showText(target) {
     const backdrop = document.getElementById('modal-backdrop');
     const textContent = document.getElementById('text-content');
+    const scrollBox = document.getElementById('scroll-box');
 
-    // Šálka prehrá iba zvuk bez otvárania okna
+    clearTimeout(clockTimeout);
+    clockSound.pause();
+
     if (target === 'salka') {
         cupSound.currentTime = 0;
         cupSound.play().catch(error => console.log("Zvuk šálky zablokovaný:", error));
@@ -360,6 +447,13 @@ function showText(target) {
 
     if (texts[target]) {
         textContent.innerHTML = texts[target];
+        
+        if (target === 'hodiny') {
+            scrollBox.classList.add('small-scroll');
+        } else {
+            scrollBox.classList.remove('small-scroll');
+        }
+
         backdrop.classList.add('active');
         
         if (target === 'pergamen') {
@@ -371,6 +465,10 @@ function showText(target) {
         } else if (target === 'hodiny') {
             clockSound.currentTime = 0;
             clockSound.play().catch(error => console.log("Zvuk hodín zablokovaný:", error));
+            
+            clockTimeout = setTimeout(() => {
+                clockSound.pause();
+            }, 2500);
         }
     }
 }
@@ -378,6 +476,9 @@ function showText(target) {
 function closeText() {
     const backdrop = document.getElementById('modal-backdrop');
     backdrop.classList.remove('active');
+    
+    clearTimeout(clockTimeout);
+    clockSound.pause();
 }
 </script>
 </body>
