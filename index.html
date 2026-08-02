@@ -218,7 +218,7 @@
             height: 70%;
             display: flex;
             flex-direction: column;
-            justify-content: center;
+            justify-content: flex-start;
             align-items: center;
             text-align: center;
             color: #2b1705;
@@ -234,12 +234,20 @@
         }
 
         .scroll-text-content h2 {
-            margin-top: 0;
+            margin-top: 5px;
             color: #4a270b;
-            font-size: 1.4rem;
+            font-size: 1.3rem;
             border-bottom: 2px solid #b8915c;
             padding-bottom: 5px;
-            margin-bottom: 10px;
+            margin-bottom: 8px;
+            width: 100%;
+        }
+
+        .scroll-text-content p {
+            font-size: 0.9rem;
+            line-height: 1.4;
+            margin-bottom: 12px;
+            text-align: left;
         }
 
         .profile-layout { 
@@ -260,6 +268,7 @@
             font-weight: bold; 
             color: #4a270b; 
             margin: 0 0 4px 0; 
+            border: none !important;
         }
         .profile-subtitle { 
             font-size: 1.05rem; 
@@ -398,7 +407,15 @@ const clockSound = new Audio('https://raw.githubusercontent.com/MarionArrington/
 let clockTimeout;
 
 const texts = {
-    pergamen: "<h2>Dôležitý list</h2><p>Tento stredný pergamen na stole obsahuje tajné pokyny pre nadchádzajúce vyučovanie obrany proti čiernej mágii. Očakáva sa tvoja účasť o polnoci.</p>",
+    pergamen: `<h2>Spôsob výučby</h2>
+               <p>Ako isto viete, Základy kúzelníckeho vzdelania neprebiehajú formou online výuky, ale na príslušnú nástenku pridelenú triede ZKV C (sekcia 104) pribudnú každý týždeň nové zápisky. V rovnakom intervale budú zverejňované aj zadania domácich úloh.<br>Pre úspešné ukončenie predmetu a postup do ďalšieho ročníka je nutné získať minimálne päť známok, či už vďaka vyššie spomenutým prácam alebo povinnej polročnej a koncoročnej skúške.</p>
+               
+               <h2>Domáce úlohy</h2>
+               <p>V každej zo zadaných nepovinných prác Vám bude ponúknutých hneď niekoľko možností vypracovania, takže pevne verím, že si každý nájde to, ktoré bude najviac vyhovovať jeho záujmom a schopnostiam. Okrem formulára pod zadaním nám môžete úlohy zasielať i prostredníctvom Discordu, avšak v odosielacom formulári vždy uveďte, z akého účtu ste prácu odovzdali.</p>
+               
+               <h2>Učebnica</h2>
+               <p>Počas roka budeme používať učebnicu Praise Eveleen: Základy kouzelnického vzdělání. Jej vlastnenie nie je povinné, no každý kto ju bude mať na konci 6. výukového týždňa v inventári, získa známku navyše.</p>`,
+               
     fotografia: `<div class="profile-layout">
                     <div class="profile-text-side">
                         <h2 class="profile-title">Marion G. Arrington</h2>
@@ -468,7 +485,7 @@ function showText(target) {
             
             clockTimeout = setTimeout(() => {
                 clockSound.pause();
-            }, 5500);
+            }, 2500);
         }
     }
 }
