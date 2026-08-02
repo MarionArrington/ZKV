@@ -233,27 +233,27 @@
             opacity: 1;
         }
 
-        /* Pôvodný štýl nadpisov s pevnou čiarou */
+        /* Štýl nadpisov s pevnou stredovou čiarou */
         .scroll-text-content h2 {
             margin-top: 5px;
             color: #4a270b;
-            font-size: 1.3rem;
+            font-size: 1.4rem;
             border-bottom: 2px solid #b8915c;
             padding-bottom: 5px;
-            margin-bottom: 8px;
+            margin-bottom: 12px;
             width: 60%;
             margin-left: auto;
             margin-right: auto;
         }
 
         .scroll-text-content p {
-            font-size: 0.9rem;
-            line-height: 1.4;
+            font-size: 0.95rem;
+            line-height: 1.5;
             margin-bottom: 12px;
             text-align: left;
         }
 
-        /* Pôvodné rozloženie pre profil (fotografia) */
+        /* Pôvodné vycentrované rozloženie pre profil (fotografia) */
         .profile-layout { 
             display: flex; 
             align-items: center; 
@@ -268,7 +268,7 @@
             flex-direction: column; 
         }
         .profile-title { 
-            font-size: 1.45rem; 
+            font-size: 1.5rem; 
             font-weight: bold; 
             color: #4a270b; 
             margin: 0 0 4px 0; 
@@ -277,13 +277,13 @@
             width: 100% !important;
         }
         .profile-subtitle { 
-            font-size: 1.05rem; 
+            font-size: 1.1rem; 
             font-style: italic; 
             color: #5c3a21; 
-            margin: 0 0 20px 0; 
+            margin: 0 0 15px 0; 
         }
         .profile-text { 
-            font-size: 0.95rem; 
+            font-size: 1rem; 
             line-height: 1.5; 
             margin: 0; 
         }
@@ -314,34 +314,39 @@
             right: 105px; 
             z-index: 3; 
         }
+        
+        /* Vycentrované kontakty pre sovu */
         .contacts-wrapper { 
             display: flex; 
             flex-direction: column; 
             align-items: center; 
             width: 100%; 
-            gap: 10px; 
+            gap: 12px; 
+            text-align: center;
         }
         .contacts-intro { 
-            font-size: 0.95rem; 
+            font-size: 1rem; 
             font-style: italic; 
             color: #5c3a21; 
-            margin-bottom: 5px; 
+            margin-bottom: 8px; 
             text-align: center; 
         }
         .contacts-list { 
             display: flex; 
             flex-direction: column; 
-            gap: 10px; 
+            gap: 12px; 
             width: 100%; 
             max-width: 400px; 
-            align-items: flex-start; 
+            align-items: center; 
         }
         .contact-item { 
             display: flex; 
             align-items: center; 
+            justify-content: center;
             gap: 12px; 
-            font-size: 0.95rem; 
+            font-size: 1rem; 
             color: #2b1705; 
+            width: 100%;
         }
         .contact-icon { 
             width: 26px; 
@@ -451,7 +456,7 @@ const texts = {
                    </div>
                </div>
            </div>`,
-    hodiny: `<h2>Upozornenie</h2><p style="font-size: 1.15rem; margin-top: 15px;">Nezabudnite pravidelne kontrolovať nástenku.</p>`
+    hodiny: `<h2>Upozornenie</h2><p style="font-size: 1.2rem; margin-top: 15px; text-align: center;">Nezabudnite pravidelne kontrolovať nástenku.</p>`
 };
 
 function showText(target) {
@@ -491,7 +496,7 @@ function showText(target) {
             
             clockTimeout = setTimeout(() => {
                 clockSound.pause();
-            }, 5500);
+            }, 2500);
         }
     }
 }
