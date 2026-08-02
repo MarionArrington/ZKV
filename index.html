@@ -93,6 +93,14 @@
             height: 29%;
         }
 
+        /* Hotspot pre knihu na stole (upravte súradnice podľa potreby umiestnenia knihy) */
+        .hotspot.kniha {
+            top: 75%;
+            left: 45%;
+            width: 15%;
+            height: 15%;
+        }
+
         /* --- ANIMOVANÉ PRVKY --- */
 
         .flame-glow {
@@ -193,7 +201,7 @@
             transition: transform 0.9s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.5s ease;
         }
 
-        /* Špeciálna trieda pre menší pergamen (hodiny) */
+        /* Špeciálna trieda pre menší pergamen (hodiny) alebo kompaktné menu (kniha) */
         .scroll-container.small-scroll {
             max-width: 450px;
         }
@@ -210,7 +218,7 @@
             filter: drop-shadow(0 15px 25px rgba(0,0,0,0.8));
         }
 
-        /* Základné zarovnanie obsahu na vrch (pre fotografiu a ostatné) */
+        /* Základné zarovnanie obsahu na vrch */
         .scroll-text-content {
             position: absolute;
             top: 15%;
@@ -230,7 +238,7 @@
             transition: opacity 0.4s ease 0.5s;
         }
 
-        /* Špeciálna trieda pre vertikálne zarovnanie na stred (použité pre sovu) */
+        /* Špeciálna trieda pre vertikálne zarovnanie na stred */
         .scroll-text-content.centered-content {
             justify-content: center;
         }
@@ -259,7 +267,7 @@
             text-align: left;
         }
 
-        /* Pôvodné rozloženie pre profil (fotografia) */
+        /* Zväčšený text pre profil (fotografia) */
         .profile-layout { 
             display: flex; 
             align-items: center; 
@@ -274,7 +282,7 @@
             flex-direction: column; 
         }
         .profile-title { 
-            font-size: 1.45rem; 
+            font-size: 1.6rem !important; 
             font-weight: bold; 
             color: #4a270b; 
             margin: 0 0 4px 0; 
@@ -283,14 +291,14 @@
             width: 100% !important;
         }
         .profile-subtitle { 
-            font-size: 1.05rem; 
+            font-size: 1.15rem !important; 
             font-style: italic; 
             color: #5c3a21; 
             margin: 0 0 15px 0; 
         }
         .profile-text { 
-            font-size: 0.95rem; 
-            line-height: 1.4; 
+            font-size: 1.05rem !important; 
+            line-height: 1.5 !important; 
             margin: 0; 
         }
         .profile-photos-side { 
@@ -321,7 +329,7 @@
             z-index: 3; 
         }
         
-        /* Kontakty pre sovu usporiadané pod sebou */
+        /* Zväčšený text a kontakty pre sovu */
         .contacts-wrapper { 
             display: flex; 
             flex-direction: column; 
@@ -330,32 +338,58 @@
             gap: 10px; 
         }
         .contacts-intro { 
-            font-size: 0.95rem; 
+            font-size: 1.05rem !important; 
             font-style: italic; 
             color: #5c3a21; 
-            margin-bottom: 5px; 
+            margin-bottom: 8px !important; 
             text-align: center; 
         }
         .contacts-list { 
             display: flex; 
             flex-direction: column; 
-            gap: 10px; 
+            gap: 12px; 
             width: 100%; 
-            max-width: 350px; 
+            max-width: 380px; 
             align-items: flex-start; 
         }
         .contact-item { 
             display: flex; 
             align-items: center; 
             gap: 12px; 
-            font-size: 0.95rem; 
+            font-size: 1.05rem !important; 
             color: #2b1705; 
         }
         .contact-icon { 
-            width: 26px; 
-            height: 26px; 
+            width: 28px; 
+            height: 28px; 
             object-fit: contain; 
             border-radius: 50%; 
+        }
+
+        /* Štýl pre kompaktné menu z knižky */
+        .chapters-list {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            width: 100%;
+            max-width: 300px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        .chapter-link {
+            font-size: 1rem;
+            color: #2b1705;
+            text-decoration: none;
+            padding: 6px 10px;
+            border-radius: 4px;
+            background: rgba(92, 58, 33, 0.08);
+            border: 1px solid rgba(184, 145, 92, 0.4);
+            transition: all 0.2s ease;
+        }
+        .chapter-link:hover {
+            background: #5c3a21;
+            color: #fff;
+            transform: scale(1.03);
         }
 
         .close-btn {
@@ -402,6 +436,7 @@
         <div class="hotspot pergamen" onclick="showText('pergamen')" title="Pergamen"></div>
         <div class="hotspot fotografia" onclick="showText('fotografia')" title="Fotografia"></div>
         <div class="hotspot sova" onclick="showText('sova')" title="Sova"></div>
+        <div class="hotspot kniha" onclick="showText('kniha')" title="Kniha kapitol"></div>
 
         <div id="modal-backdrop" class="modal-backdrop" onclick="closeText()">
             <div class="scroll-container" id="scroll-box" onclick="event.stopPropagation()">
@@ -459,7 +494,20 @@ const texts = {
                    </div>
                </div>
            </div>`,
-    hodiny: `<h2>Upozornenie</h2><p style="font-size: 1.15rem; margin-top: 10px;">Nezabudnite pravidelne kontrolovať nástenku.</p>`
+    hodiny: `<h2>Upozornenie</h2><p style="font-size: 1.15rem; margin-top: 10px;">Nezabudnite pravidelne kontrolovať nástenku.</p>`,
+    
+    kniha: `<h2>Obsah kapitol</h2>
+            <div class="chapters-list">
+                <a href="#" class="chapter-link">1. Kúzelné formule</a>
+                <a href="#" class="chapter-link">2. OPČM</a>
+                <a href="#" class="chapter-link">3. Dejiny mágie</a>
+                <a href="#" class="chapter-link">4. Premeňovanie</a>
+                <a href="#" class="chapter-link">5. Lektvary</a>
+                <a href="#" class="chapter-link">6. Bylinky, Astronómia</a>
+                <a href="#" class="chapter-link">7. Drakológia, POKT</a>
+                <a href="#" class="chapter-link">8. Štúdium muklov</a>
+                <a href="#" class="chapter-link">9. Lietanie</a>
+            </div>`
 };
 
 function showText(target) {
@@ -479,14 +527,13 @@ function showText(target) {
     if (texts[target]) {
         textContent.innerHTML = texts[target];
         
-        // Nastavenie vertikálneho zarovnania na stred iba pre sovu, ostatné ostávajú zhora
         if (target === 'sova') {
             textContent.classList.add('centered-content');
         } else {
             textContent.classList.remove('centered-content');
         }
 
-        if (target === 'hodiny') {
+        if (target === 'hodiny' || target === 'kniha') {
             scrollBox.classList.add('small-scroll');
         } else {
             scrollBox.classList.remove('small-scroll');
@@ -494,7 +541,7 @@ function showText(target) {
 
         backdrop.classList.add('active');
         
-        if (target === 'pergamen') {
+        if (target === 'pergamen' || target === 'kniha') {
             paperSound.currentTime = 0;
             paperSound.play().catch(error => console.log("Zvuk papiera zablokovaný:", error));
         } else if (target === 'sova') {
@@ -506,7 +553,7 @@ function showText(target) {
             
             clockTimeout = setTimeout(() => {
                 clockSound.pause();
-            }, 2500);
+            }, 5500);
         }
     }
 }
