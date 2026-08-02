@@ -210,7 +210,7 @@
             filter: drop-shadow(0 15px 25px rgba(0,0,0,0.8));
         }
 
-        /* Vertikálne zarovnanie obsahu na stred (justify-content: center) */
+        /* Základné zarovnanie obsahu na vrch (pre fotografiu a ostatné) */
         .scroll-text-content {
             position: absolute;
             top: 15%;
@@ -219,7 +219,7 @@
             height: 70%;
             display: flex;
             flex-direction: column;
-            justify-content: center;
+            justify-content: flex-start;
             align-items: center;
             text-align: center;
             color: #2b1705;
@@ -228,6 +228,11 @@
             padding: 10px;
             opacity: 0;
             transition: opacity 0.4s ease 0.5s;
+        }
+
+        /* Špeciálna trieda pre vertikálne zarovnanie na stred (použité pre sovu) */
+        .scroll-text-content.centered-content {
+            justify-content: center;
         }
 
         .modal-backdrop.active .scroll-text-content {
@@ -337,7 +342,7 @@
             gap: 10px; 
             width: 100%; 
             max-width: 350px; 
-            align-items: flex-start; /* Ikonky a texty pekne zarovnané pod sebou v stĺpci */
+            align-items: flex-start; 
         }
         .contact-item { 
             display: flex; 
@@ -474,6 +479,13 @@ function showText(target) {
     if (texts[target]) {
         textContent.innerHTML = texts[target];
         
+        // Nastavenie vertikálneho zarovnania na stred iba pre sovu, ostatné ostávajú zhora
+        if (target === 'sova') {
+            textContent.classList.add('centered-content');
+        } else {
+            textContent.classList.remove('centered-content');
+        }
+
         if (target === 'hodiny') {
             scrollBox.classList.add('small-scroll');
         } else {
