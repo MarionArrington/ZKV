@@ -210,6 +210,7 @@
             filter: drop-shadow(0 15px 25px rgba(0,0,0,0.8));
         }
 
+        /* Vertikálne zarovnanie obsahu na stred (justify-content: center) */
         .scroll-text-content {
             position: absolute;
             top: 15%;
@@ -218,7 +219,7 @@
             height: 70%;
             display: flex;
             flex-direction: column;
-            justify-content: flex-start;
+            justify-content: center;
             align-items: center;
             text-align: center;
             color: #2b1705;
@@ -237,23 +238,23 @@
         .scroll-text-content h2 {
             margin-top: 5px;
             color: #4a270b;
-            font-size: 1.4rem;
+            font-size: 1.3rem;
             border-bottom: 2px solid #b8915c;
             padding-bottom: 5px;
-            margin-bottom: 12px;
+            margin-bottom: 10px;
             width: 60%;
             margin-left: auto;
             margin-right: auto;
         }
 
         .scroll-text-content p {
-            font-size: 0.95rem;
-            line-height: 1.5;
-            margin-bottom: 12px;
+            font-size: 0.9rem;
+            line-height: 1.4;
+            margin-bottom: 10px;
             text-align: left;
         }
 
-        /* Pôvodné vycentrované rozloženie pre profil (fotografia) */
+        /* Pôvodné rozloženie pre profil (fotografia) */
         .profile-layout { 
             display: flex; 
             align-items: center; 
@@ -268,7 +269,7 @@
             flex-direction: column; 
         }
         .profile-title { 
-            font-size: 1.5rem; 
+            font-size: 1.45rem; 
             font-weight: bold; 
             color: #4a270b; 
             margin: 0 0 4px 0; 
@@ -277,14 +278,14 @@
             width: 100% !important;
         }
         .profile-subtitle { 
-            font-size: 1.1rem; 
+            font-size: 1.05rem; 
             font-style: italic; 
             color: #5c3a21; 
             margin: 0 0 15px 0; 
         }
         .profile-text { 
-            font-size: 1rem; 
-            line-height: 1.5; 
+            font-size: 0.95rem; 
+            line-height: 1.4; 
             margin: 0; 
         }
         .profile-photos-side { 
@@ -315,38 +316,35 @@
             z-index: 3; 
         }
         
-        /* Vycentrované kontakty pre sovu */
+        /* Kontakty pre sovu usporiadané pod sebou */
         .contacts-wrapper { 
             display: flex; 
             flex-direction: column; 
             align-items: center; 
             width: 100%; 
-            gap: 12px; 
-            text-align: center;
+            gap: 10px; 
         }
         .contacts-intro { 
-            font-size: 1rem; 
+            font-size: 0.95rem; 
             font-style: italic; 
             color: #5c3a21; 
-            margin-bottom: 8px; 
+            margin-bottom: 5px; 
             text-align: center; 
         }
         .contacts-list { 
             display: flex; 
             flex-direction: column; 
-            gap: 12px; 
+            gap: 10px; 
             width: 100%; 
-            max-width: 400px; 
-            align-items: center; 
+            max-width: 350px; 
+            align-items: flex-start; /* Ikonky a texty pekne zarovnané pod sebou v stĺpci */
         }
         .contact-item { 
             display: flex; 
             align-items: center; 
-            justify-content: center;
             gap: 12px; 
-            font-size: 1rem; 
+            font-size: 0.95rem; 
             color: #2b1705; 
-            width: 100%;
         }
         .contact-icon { 
             width: 26px; 
@@ -456,7 +454,7 @@ const texts = {
                    </div>
                </div>
            </div>`,
-    hodiny: `<h2>Upozornenie</h2><p style="font-size: 1.2rem; margin-top: 15px; text-align: center;">Nezabudnite pravidelne kontrolovať nástenku.</p>`
+    hodiny: `<h2>Upozornenie</h2><p style="font-size: 1.15rem; margin-top: 10px;">Nezabudnite pravidelne kontrolovať nástenku.</p>`
 };
 
 function showText(target) {
