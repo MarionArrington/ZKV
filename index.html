@@ -258,13 +258,13 @@
             text-align: left;
         }
 
-        /* --- MODERNÉ KABÍNOVÉ MENU (GitHub štýl pre knihu) --- */
+        /* --- MODERNÉ KABÍNOVÉ MENU (GitHub štýl pre knihu, vysúva sa nahor) --- */
         .github-menu-box {
             position: absolute;
             background: #ffffff;
             border: 1px solid #d0d7de;
             border-radius: 6px;
-            box-shadow: 0 8px 24px rgba(140, 149, 159, 0.35);
+            box-shadow: 0 -8px 24px rgba(140, 149, 159, 0.35);
             width: 240px;
             display: none;
             flex-direction: column;
@@ -469,7 +469,7 @@
             </div>
         </div>
 
-        <!-- GitHub rozbaľovacie menu pre knihu -->
+        <!-- GitHub rozbaľovacie menu pre knihu (vysúva sa nahor) -->
         <div id="github-menu" class="github-menu-box">
             <a href="#" class="github-menu-item"><span class="chapter-num">1.</span><span class="chapter-name">Kúzelné formule</span></a>
             <a href="#" class="github-menu-item"><span class="chapter-num">2.</span><span class="chapter-name">OPČM</span></a>
@@ -571,7 +571,7 @@ function showText(target) {
             
             clockTimeout = setTimeout(() => {
                 clockSound.pause();
-            }, 5500);
+            }, 2500);
         }
     }
 }
@@ -597,8 +597,11 @@ function toggleGitHubMenu(event) {
         const rect = event.currentTarget.getBoundingClientRect();
         const containerRect = document.querySelector('.workspace-container').getBoundingClientRect();
         
-        // Výpočet pozície menu pod kliknutou knihou vzhľadom na kontajner
-        const topPos = rect.bottom - containerRect.top + 5;
+        // Vypočítame výšku menu (približná výška pre 9 položiek je cca 260px)
+        const menuHeight = 265;
+        
+        // Umiestnenie nahor nad knihu (alebo pod, ak by bolo hore prázdno, no tu sa vysunie nahor)
+        const topPos = (rect.top - containerRect.top) - menuHeight - 5;
         const leftPos = rect.left - containerRect.left;
         
         menu.style.top = topPos + 'px';
