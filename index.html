@@ -93,7 +93,6 @@
             height: 29%;
         }
 
-        /* Presný hotspot pre knihu na základe reálneho obrázka */
         .hotspot.kniha {
             top: 73%;
             left: 75%;
@@ -169,7 +168,7 @@
             background: linear-gradient(90deg, rgba(255,255,255,0.15), transparent);
         }
 
-        /* --- MODÁLNE OKNO --- */
+        /* --- MODÁLNE OKNO (Pergamen pre bežné položky) --- */
         .modal-backdrop {
             position: fixed;
             top: 0;
@@ -217,7 +216,6 @@
             filter: drop-shadow(0 15px 25px rgba(0,0,0,0.8));
         }
 
-        /* Základné zarovnanie obsahu na vrch pre všetky modálne okná vrátane fotky a sovy */
         .scroll-text-content {
             position: absolute;
             top: 15%;
@@ -260,7 +258,65 @@
             text-align: left;
         }
 
-        /* Zväčšený text pre profil (fotografia) */
+        /* --- MODERNÉ KABÍNOVÉ MENU (GitHub štýl pre knihu) --- */
+        .github-menu-box {
+            position: absolute;
+            background: #ffffff;
+            border: 1px solid #d0d7de;
+            border-radius: 6px;
+            box-shadow: 0 8px 24px rgba(140, 149, 159, 0.35);
+            width: 240px;
+            display: none;
+            flex-direction: column;
+            z-index: 150;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+            padding: 4px 0;
+            opacity: 0;
+            transform: scale(0.95);
+            transition: opacity 0.2s ease, transform 0.2s ease;
+        }
+
+        .github-menu-box.active {
+            display: flex;
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        .github-menu-item {
+            display: flex;
+            align-items: center;
+            padding: 6px 12px;
+            font-size: 13px;
+            color: #24292f;
+            text-decoration: none;
+            white-space: nowrap;
+            transition: background-color 0.15s ease, color 0.15s ease;
+        }
+
+        .github-menu-item:hover {
+            background-color: #0969da;
+            color: #ffffff;
+        }
+
+        .chapter-num {
+            display: inline-block;
+            width: 22px;
+            text-align: right;
+            margin-right: 10px;
+            font-weight: 500;
+            color: #57606a;
+        }
+
+        .github-menu-item:hover .chapter-num {
+            color: #ffffff;
+        }
+
+        .chapter-name {
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        /* Profil, sova a tlačidlo zatvorenia */
         .profile-layout { 
             display: flex; 
             align-items: center; 
@@ -322,7 +378,6 @@
             z-index: 3; 
         }
         
-        /* Zväčšený text a kontakty pre sovu (zarovnané hore) */
         .contacts-wrapper { 
             display: flex; 
             flex-direction: column; 
@@ -357,32 +412,6 @@
             height: 28px; 
             object-fit: contain; 
             border-radius: 50%; 
-        }
-
-        /* Štýl pre kompaktné menu z knižky */
-        .chapters-list {
-            display: flex;
-            flex-direction: column;
-            gap: 5px;
-            width: 100%;
-            max-width: 260px;
-            margin: 0 auto;
-            text-align: center;
-        }
-        .chapter-link {
-            font-size: 0.85rem;
-            color: #2b1705;
-            text-decoration: none;
-            padding: 4px 6px;
-            border-radius: 4px;
-            background: rgba(92, 58, 33, 0.08);
-            border: 1px solid rgba(184, 145, 92, 0.4);
-            transition: all 0.2s ease;
-        }
-        .chapter-link:hover {
-            background: #5c3a21;
-            color: #fff;
-            transform: scale(1.03);
         }
 
         .close-btn {
@@ -429,14 +458,28 @@
         <div class="hotspot pergamen" onclick="showText('pergamen')" title="Pergamen"></div>
         <div class="hotspot fotografia" onclick="showText('fotografia')" title="Fotografia"></div>
         <div class="hotspot sova" onclick="showText('sova')" title="Sova"></div>
-        <div class="hotspot kniha" onclick="showText('kniha')" title="Kniha kapitol"></div>
+        <div class="hotspot kniha" onclick="toggleGitHubMenu(event)" title="Kniha kapitol"></div>
 
+        <!-- Klasické modálne okno (pergamen) pre ostatné položky -->
         <div id="modal-backdrop" class="modal-backdrop" onclick="closeText()">
             <div class="scroll-container" id="scroll-box" onclick="event.stopPropagation()">
                 <button class="close-btn" onclick="closeText()">&times;</button>
                 <img src="https://i.ibb.co/7xYQz5dq/111ab02f-6b6b-4909-bda8-4ce4549fafc9-removebg-preview.png" alt="Pergamen" class="scroll-image">
                 <div id="text-content" class="scroll-text-content"></div>
             </div>
+        </div>
+
+        <!-- GitHub rozbaľovacie menu pre knihu -->
+        <div id="github-menu" class="github-menu-box">
+            <a href="#" class="github-menu-item"><span class="chapter-num">1.</span><span class="chapter-name">Kúzelné formule</span></a>
+            <a href="#" class="github-menu-item"><span class="chapter-num">2.</span><span class="chapter-name">OPČM</span></a>
+            <a href="#" class="github-menu-item"><span class="chapter-num">3.</span><span class="chapter-name">Dejiny mágie</span></a>
+            <a href="#" class="github-menu-item"><span class="chapter-num">4.</span><span class="chapter-name">Premeňovanie</span></a>
+            <a href="#" class="github-menu-item"><span class="chapter-num">5.</span><span class="chapter-name">Lektvary</span></a>
+            <a href="#" class="github-menu-item"><span class="chapter-num">6.</span><span class="chapter-name">Bylinky, Astronómia</span></a>
+            <a href="#" class="github-menu-item"><span class="chapter-num">7.</span><span class="chapter-name">Drakológia, POKT</span></a>
+            <a href="#" class="github-menu-item"><span class="chapter-num">8.</span><span class="chapter-name">Štúdium muklov</span></a>
+            <a href="#" class="github-menu-item"><span class="chapter-num">9.</span><span class="chapter-name">Lietanie</span></a>
         </div>
     </div>
 
@@ -487,23 +530,11 @@ const texts = {
                    </div>
                </div>
            </div>`,
-    hodiny: `<h2>Upozornenie</h2><p style="font-size: 1.15rem; margin-top: 10px;">Nezabudnite pravidelne kontrolovať nástenku.</p>`,
-    
-    kniha: `<h2>Obsah kapitol</h2>
-            <div class="chapters-list">
-                <a href="#" class="chapter-link">1. Kúzelné formule</a>
-                <a href="#" class="chapter-link">2. OPČM</a>
-                <a href="#" class="chapter-link">3. Dejiny mágie</a>
-                <a href="#" class="chapter-link">4. Premeňovanie</a>
-                <a href="#" class="chapter-link">5. Lektvary</a>
-                <a href="#" class="chapter-link">6. Bylinky, Astronómia</a>
-                <a href="#" class="chapter-link">7. Drakológia, POKT</a>
-                <a href="#" class="chapter-link">8. Štúdium muklov</a>
-                <a href="#" class="chapter-link">9. Lietanie</a>
-            </div>`
+    hodiny: `<h2>Upozornenie</h2><p style="font-size: 1.15rem; margin-top: 10px;">Nezabudnite pravidelne kontrolovať nástenku.</p>`
 };
 
 function showText(target) {
+    closeGitHubMenu();
     const backdrop = document.getElementById('modal-backdrop');
     const textContent = document.getElementById('text-content');
     const scrollBox = document.getElementById('scroll-box');
@@ -520,7 +551,7 @@ function showText(target) {
     if (texts[target]) {
         textContent.innerHTML = texts[target];
 
-        if (target === 'hodiny' || target === 'kniha') {
+        if (target === 'hodiny') {
             scrollBox.classList.add('small-scroll');
         } else {
             scrollBox.classList.remove('small-scroll');
@@ -528,7 +559,7 @@ function showText(target) {
 
         backdrop.classList.add('active');
         
-        if (target === 'pergamen' || target === 'kniha') {
+        if (target === 'pergamen') {
             paperSound.currentTime = 0;
             paperSound.play().catch(error => console.log("Zvuk papiera zablokovaný:", error));
         } else if (target === 'sova') {
@@ -540,7 +571,7 @@ function showText(target) {
             
             clockTimeout = setTimeout(() => {
                 clockSound.pause();
-            }, 2500);
+            }, 5500);
         }
     }
 }
@@ -552,6 +583,43 @@ function closeText() {
     clearTimeout(clockTimeout);
     clockSound.pause();
 }
+
+function toggleGitHubMenu(event) {
+    event.stopPropagation();
+    closeText();
+    
+    const menu = document.getElementById('github-menu');
+    const isVisible = menu.classList.contains('active');
+    
+    if (isVisible) {
+        closeGitHubMenu();
+    } else {
+        const rect = event.currentTarget.getBoundingClientRect();
+        const containerRect = document.querySelector('.workspace-container').getBoundingClientRect();
+        
+        // Výpočet pozície menu pod kliknutou knihou vzhľadom na kontajner
+        const topPos = rect.bottom - containerRect.top + 5;
+        const leftPos = rect.left - containerRect.left;
+        
+        menu.style.top = topPos + 'px';
+        menu.style.left = leftPos + 'px';
+        
+        menu.classList.add('active');
+        
+        paperSound.currentTime = 0;
+        paperSound.play().catch(error => console.log("Zvuk papiera zablokovaný:", error));
+    }
+}
+
+function closeGitHubMenu() {
+    const menu = document.getElementById('github-menu');
+    menu.classList.remove('active');
+}
+
+// Zatvorenie menu pri kliknutí hocikde inam na stránke
+window.addEventListener('click', () => {
+    closeGitHubMenu();
+});
 </script>
 </body>
 </html>
