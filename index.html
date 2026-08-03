@@ -93,12 +93,12 @@
             height: 29%;
         }
 
-        /* Hotspot pre knihu na stole (upravte súradnice podľa potreby umiestnenia knihy) */
+        /* Presný hotspot pre knihu na stole */
         .hotspot.kniha {
-            top: 75%;
-            left: 45%;
+            top: 65%;
+            left: 21%;
             width: 15%;
-            height: 15%;
+            height: 22%;
         }
 
         /* --- ANIMOVANÉ PRVKY --- */
@@ -201,7 +201,6 @@
             transition: transform 0.9s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.5s ease;
         }
 
-        /* Špeciálna trieda pre menší pergamen (hodiny) alebo kompaktné menu (kniha) */
         .scroll-container.small-scroll {
             max-width: 450px;
         }
@@ -218,7 +217,6 @@
             filter: drop-shadow(0 15px 25px rgba(0,0,0,0.8));
         }
 
-        /* Základné zarovnanie obsahu na vrch */
         .scroll-text-content {
             position: absolute;
             top: 15%;
@@ -238,7 +236,6 @@
             transition: opacity 0.4s ease 0.5s;
         }
 
-        /* Špeciálna trieda pre vertikálne zarovnanie na stred */
         .scroll-text-content.centered-content {
             justify-content: center;
         }
@@ -247,7 +244,6 @@
             opacity: 1;
         }
 
-        /* Štýl nadpisov s pevnou stredovou čiarou */
         .scroll-text-content h2 {
             margin-top: 5px;
             color: #4a270b;
@@ -370,17 +366,17 @@
         .chapters-list {
             display: flex;
             flex-direction: column;
-            gap: 8px;
+            gap: 6px;
             width: 100%;
-            max-width: 300px;
+            max-width: 280px;
             margin: 0 auto;
             text-align: center;
         }
         .chapter-link {
-            font-size: 1rem;
+            font-size: 0.9rem;
             color: #2b1705;
             text-decoration: none;
-            padding: 6px 10px;
+            padding: 5px 8px;
             border-radius: 4px;
             background: rgba(92, 58, 33, 0.08);
             border: 1px solid rgba(184, 145, 92, 0.4);
@@ -553,7 +549,7 @@ function showText(target) {
             
             clockTimeout = setTimeout(() => {
                 clockSound.pause();
-            }, 5500);
+            }, 2500);
         }
     }
 }
