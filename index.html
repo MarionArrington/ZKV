@@ -93,11 +93,11 @@
             height: 29%;
         }
 
-        /* Presný hotspot pre knihu na stole */
+        /* Presný hotspot pre knihu na základe reálneho obrázka */
         .hotspot.kniha {
-            top: 65%;
-            left: 21%;
-            width: 15%;
+            top: 73%;
+            left: 75%;
+            width: 21%;
             height: 22%;
         }
 
@@ -217,6 +217,7 @@
             filter: drop-shadow(0 15px 25px rgba(0,0,0,0.8));
         }
 
+        /* Základné zarovnanie obsahu na vrch pre všetky modálne okná vrátane fotky a sovy */
         .scroll-text-content {
             position: absolute;
             top: 15%;
@@ -234,10 +235,6 @@
             padding: 10px;
             opacity: 0;
             transition: opacity 0.4s ease 0.5s;
-        }
-
-        .scroll-text-content.centered-content {
-            justify-content: center;
         }
 
         .modal-backdrop.active .scroll-text-content {
@@ -325,7 +322,7 @@
             z-index: 3; 
         }
         
-        /* Zväčšený text a kontakty pre sovu */
+        /* Zväčšený text a kontakty pre sovu (zarovnané hore) */
         .contacts-wrapper { 
             display: flex; 
             flex-direction: column; 
@@ -366,17 +363,17 @@
         .chapters-list {
             display: flex;
             flex-direction: column;
-            gap: 6px;
+            gap: 5px;
             width: 100%;
-            max-width: 280px;
+            max-width: 260px;
             margin: 0 auto;
             text-align: center;
         }
         .chapter-link {
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             color: #2b1705;
             text-decoration: none;
-            padding: 5px 8px;
+            padding: 4px 6px;
             border-radius: 4px;
             background: rgba(92, 58, 33, 0.08);
             border: 1px solid rgba(184, 145, 92, 0.4);
@@ -522,12 +519,6 @@ function showText(target) {
 
     if (texts[target]) {
         textContent.innerHTML = texts[target];
-        
-        if (target === 'sova') {
-            textContent.classList.add('centered-content');
-        } else {
-            textContent.classList.remove('centered-content');
-        }
 
         if (target === 'hodiny' || target === 'kniha') {
             scrollBox.classList.add('small-scroll');
