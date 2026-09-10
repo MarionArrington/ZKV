@@ -18,7 +18,7 @@
 
         .workspace-container {
             position: relative;
-            max-width: 850px; /* Zmenšené pre odstránenie čiernych pásov */
+            max-width: 850px;
             width: 100%;
         }
 
@@ -28,6 +28,24 @@
             display: block;
             border-radius: 4px;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7);
+        }
+
+        /* Zhasnutie stránky po kliknutí na sviečku */
+        .room-darkness {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(5, 3, 2, 0.85);
+            pointer-events: none;
+            z-index: 3;
+            opacity: 0;
+            transition: opacity 0.8s ease;
+        }
+
+        .workspace-container.dark-mode .room-darkness {
+            opacity: 1;
         }
 
         /* Plynulé žmurknutie */
@@ -100,6 +118,13 @@
             height: 22%;
         }
 
+        .hotspot.sviecka {
+            top: 43%;
+            left: 62%;
+            width: 10%;
+            height: 20%;
+        }
+
         /* --- ANIMOVANÉ PRVKY --- */
 
         .flame-glow {
@@ -114,6 +139,11 @@
             z-index: 4;
             mix-blend-mode: screen;
             animation: strongFlicker 1s infinite alternate ease-in-out;
+            transition: opacity 0.8s ease;
+        }
+
+        .workspace-container.dark-mode .flame-glow {
+            opacity: 0.2; /* Keď je zhasnuté, plameň takmer nehreje/nesvieti */
         }
 
         @keyframes strongFlicker {
@@ -239,7 +269,6 @@
             opacity: 1;
         }
 
-        /* Väčšie medzery medzi sekciami v pergamene */
         .scroll-text-content h2 {
             margin-top: 16px;
             color: #4a270b;
@@ -321,7 +350,7 @@
             text-overflow: ellipsis;
         }
 
-        /* Profil - pridaný priestor medzi textom a obrázkami */
+        /* Profil */
         .profile-layout { 
             display: flex; 
             align-items: center; 
@@ -334,7 +363,7 @@
             flex: 1; 
             display: flex; 
             flex-direction: column; 
-            margin-right: 12px; /* Väčší odstup od obrázkov */
+            margin-right: 12px; 
         }
         .profile-title { 
             font-size: 1.1rem !important; 
@@ -449,8 +478,9 @@
 </head>
 <body>
 
-    <div class="workspace-container">
+    <div class="workspace-container" id="workspace">
         <img src="https://i.ibb.co/tT4pQm75/pracovna.png" alt="Pracovňa" class="main-image">
+        <div class="room-darkness"></div>
         <div class="owl-blink-layer"></div>
         <div class="flame-glow"></div>
         <div class="steam-container">
@@ -465,6 +495,7 @@
         <div class="hotspot fotografia" onclick="showText('fotografia')" title="Fotografia"></div>
         <div class="hotspot sova" onclick="showText('sova')" title="Sova"></div>
         <div class="hotspot kniha" onclick="toggleGitHubMenu(event)" title="Kniha kapitol"></div>
+        <div class="hotspot sviecka" onclick="toggleDarkness(event)" title="Sviečka"></div>
 
         <!-- Klasické modálne okno -->
         <div id="modal-backdrop" class="modal-backdrop" onclick="closeText()">
@@ -588,6 +619,15 @@ function closeText() {
     
     clearTimeout(clockTimeout);
     clockSound.pause();
+}
+
+function toggleDarkness(event) {
+    event.stopPropagation();
+    closeText();
+    closeGitHubMenu();
+    
+    const workspace = document.getElementById('workspace');
+    workspace.classList.toggle('dark-mode');
 }
 
 function toggleGitHubMenu(event) {
