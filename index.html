@@ -18,7 +18,7 @@
 
         .workspace-container {
             position: relative;
-            max-width: 1000px;
+            max-width: 850px; /* Zmenšené pre odstránenie čiernych pásov */
             width: 100%;
         }
 
@@ -168,7 +168,7 @@
             background: linear-gradient(90deg, rgba(255,255,255,0.15), transparent);
         }
 
-        /* --- MODÁLNE OKNO (Pergamen pre bežné položky) --- */
+        /* --- MODÁLNE OKNO --- */
         .modal-backdrop {
             position: fixed;
             top: 0;
@@ -239,26 +239,31 @@
             opacity: 1;
         }
 
+        /* Väčšie medzery medzi sekciami v pergamene */
         .scroll-text-content h2 {
-            margin-top: 2px;
+            margin-top: 16px;
             color: #4a270b;
             font-size: 1.05rem;
             border-bottom: 2px solid #b8915c;
             padding-bottom: 3px;
-            margin-bottom: 6px;
+            margin-bottom: 8px;
             width: 60%;
             margin-left: auto;
             margin-right: auto;
         }
 
+        .scroll-text-content h2:first-of-type {
+            margin-top: 2px;
+        }
+
         .scroll-text-content p {
             font-size: 0.78rem;
             line-height: 1.3;
-            margin-bottom: 6px;
+            margin-bottom: 12px;
             text-align: left;
         }
 
-        /* --- MODERNÉ KABÍNOVÉ MENU (GitHub štýl pre knihu, zúžené a posunuté doľava) --- */
+        /* --- MODERNÉ KABÍNOVÉ MENU --- */
         .github-menu-box {
             position: absolute;
             background: #ffffff;
@@ -316,12 +321,12 @@
             text-overflow: ellipsis;
         }
 
-        /* Profil, sova a tlačidlo zatvorenia (výrazne zmenšené, aby sa zmestili) */
+        /* Profil - pridaný priestor medzi textom a obrázkami */
         .profile-layout { 
             display: flex; 
             align-items: center; 
             justify-content: space-between; 
-            gap: 12px; 
+            gap: 16px; 
             width: 100%; 
             text-align: left; 
         }
@@ -329,6 +334,7 @@
             flex: 1; 
             display: flex; 
             flex-direction: column; 
+            margin-right: 12px; /* Väčší odstup od obrázkov */
         }
         .profile-title { 
             font-size: 1.1rem !important; 
@@ -460,7 +466,7 @@
         <div class="hotspot sova" onclick="showText('sova')" title="Sova"></div>
         <div class="hotspot kniha" onclick="toggleGitHubMenu(event)" title="Kniha kapitol"></div>
 
-        <!-- Klasické modálne okno (pergamen) pre ostatné položky -->
+        <!-- Klasické modálne okno -->
         <div id="modal-backdrop" class="modal-backdrop" onclick="closeText()">
             <div class="scroll-container" id="scroll-box" onclick="event.stopPropagation()">
                 <button class="close-btn" onclick="closeText()">&times;</button>
@@ -469,7 +475,7 @@
             </div>
         </div>
 
-        <!-- GitHub rozbaľovacie menu pre knihu (posunuté doľava) -->
+        <!-- GitHub rozbaľovacie menu pre knihu -->
         <div id="github-menu" class="github-menu-box">
             <a href="#" class="github-menu-item"><span class="chapter-num">1.</span><span class="chapter-name">Kúzelné formule</span></a>
             <a href="#" class="github-menu-item"><span class="chapter-num">2.</span><span class="chapter-name">OPČM</span></a>
@@ -493,7 +499,7 @@ let clockTimeout;
 
 const texts = {
     pergamen: `<h2>Spôsob výučby</h2>
-               <p>Ako isto viete, Základy kúzelníckeho vzdelania neprebiehajú formou online výuky, ale na príslušnú nástenku pridelenú triede ZKV C (sekcia 104) pribudnú každý týždeň nové zápisky. V rovnakom intervale budú zverejňované aj zadania domácich úloh.<br>Pre úspešné ukončenie predmetu a postup do ďalšieho ročníka je nutné získať minimálne päť známok, či už vďaka vyššie spomenutým prácam alebo povinnej polročnej a koncoročnej skúške.</p>
+               <p>Ako isto viete, Základy kúzelníckeho vzdelania neprebiehajú formou online výuky, ale na príslušnú nástenku pridelenú triede ZKV A (sekcia 102) pribudnú každý týždeň nové zápisky. V rovnakom intervale budú zverejňované aj zadania domácich úloh.<br>Pre úspešné ukončenie predmetu a postup do ďalšieho ročníka je nutné získať minimálne päť známok, či už vďaka vyššie spomenutým prácam alebo povinnej polročnej a koncoročnej skúške.</p>
                
                <h2>Domáce úlohy</h2>
                <p>V každej zo zadaných nepovinných prác Vám bude ponúknutých hneď niekoľko možností vypracovania, takže pevne verím, že si každý nájde to, ktoré bude najviac vyhovovať jeho záujmom a schopnostiam. Okrem formulára pod zadaním nám môžete úlohy zasielať i prostredníctvom Discordu, avšak v odosielacom formulári vždy uveďte, z akého účtu ste prácu odovzdali.</p>
@@ -569,7 +575,6 @@ function showText(target) {
             clockSound.currentTime = 0;
             clockSound.play().catch(error => console.log("Zvuk hodín zablokovaný:", error));
             
-            // Predĺžené na 5 sekúnd, aby sa prehravač dlhšie venoval hodinám
             clockTimeout = setTimeout(() => {
                 clockSound.pause();
             }, 5000);
@@ -601,7 +606,6 @@ function toggleGitHubMenu(event) {
         const menuHeight = 240;
         
         const topPos = (rect.top - containerRect.top) - menuHeight - 5;
-        // Posunuté o 130 pixelov doľava, aby ho Revelio neodseklo na pravej strane
         const leftPos = (rect.left - containerRect.left) - 130;
         
         menu.style.top = topPos + 'px';
