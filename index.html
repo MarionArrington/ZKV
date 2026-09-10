@@ -18,7 +18,7 @@
 
         .workspace-container {
             position: relative;
-            max-width: 850px;
+            max-width: 720px; /* Úprava šírky pre odstránenie čiernych pásov */
             width: 100%;
         }
 
@@ -130,7 +130,7 @@
         .flame-glow {
             position: absolute;
             top: 53%;
-            left: 65%;
+            left: 64%; /* Posunuté o milimeter doľava */
             width: 55px;
             height: 55px;
             background: radial-gradient(circle, rgba(255,240,150,0.95) 0%, rgba(255,120,0,0.7) 50%, rgba(255,60,0,0.2) 80%, transparent 100%);
@@ -143,7 +143,7 @@
         }
 
         .workspace-container.dark-mode .flame-glow {
-            opacity: 0.2; /* Keď je zhasnuté, plameň takmer nehreje/nesvieti */
+            opacity: 0.2;
         }
 
         @keyframes strongFlicker {
@@ -350,12 +350,12 @@
             text-overflow: ellipsis;
         }
 
-        /* Profil */
+        /* Profil - výrazne zväčšená medzera medzi textom a obrázkami */
         .profile-layout { 
             display: flex; 
             align-items: center; 
             justify-content: space-between; 
-            gap: 16px; 
+            gap: 20px; 
             width: 100%; 
             text-align: left; 
         }
@@ -363,7 +363,7 @@
             flex: 1; 
             display: flex; 
             flex-direction: column; 
-            margin-right: 12px; 
+            margin-right: 28px; /* Omnoho väčší odstup od fotiek */
         }
         .profile-title { 
             font-size: 1.1rem !important; 
@@ -391,25 +391,25 @@
             gap: 6px; 
             align-items: flex-end; 
             position: relative; 
-            min-width: 110px; 
+            min-width: 100px; 
         }
         .photo-main { 
-            width: 95px; 
-            height: 115px; 
+            width: 85px; 
+            height: 105px; 
             object-fit: cover; 
             border: 2px solid #fff; 
             box-shadow: 0 4px 12px rgba(0,0,0,0.35); 
             z-index: 2; 
         }
         .photo-secondary { 
-            width: 70px; 
-            height: 70px; 
+            width: 62px; 
+            height: 62px; 
             object-fit: cover; 
             border: 2px solid #fff; 
             box-shadow: 0 4px 12px rgba(0,0,0,0.35); 
             position: absolute; 
-            top: 60px; 
-            right: 65px; 
+            top: 55px; 
+            right: 58px; 
             z-index: 3; 
         }
         
