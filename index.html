@@ -218,10 +218,10 @@
 
         .scroll-text-content {
             position: absolute;
-            top: 15%;
-            left: 10%;
-            width: 80%;
-            height: 70%;
+            top: 13%;
+            left: 9%;
+            width: 82%;
+            height: 74%;
             display: flex;
             flex-direction: column;
             justify-content: flex-start;
@@ -230,7 +230,7 @@
             color: #2b1705;
             font-family: 'Georgia', serif;
             overflow-y: auto;
-            padding: 10px;
+            padding: 5px 10px;
             opacity: 0;
             transition: opacity 0.4s ease 0.5s;
         }
@@ -240,32 +240,32 @@
         }
 
         .scroll-text-content h2 {
-            margin-top: 5px;
+            margin-top: 2px;
             color: #4a270b;
-            font-size: 1.3rem;
+            font-size: 1.05rem;
             border-bottom: 2px solid #b8915c;
-            padding-bottom: 5px;
-            margin-bottom: 10px;
+            padding-bottom: 3px;
+            margin-bottom: 6px;
             width: 60%;
             margin-left: auto;
             margin-right: auto;
         }
 
         .scroll-text-content p {
-            font-size: 0.9rem;
-            line-height: 1.4;
-            margin-bottom: 10px;
+            font-size: 0.78rem;
+            line-height: 1.3;
+            margin-bottom: 6px;
             text-align: left;
         }
 
-        /* --- MODERNÉ KABÍNOVÉ MENU (GitHub štýl pre knihu, vysúva sa nahor) --- */
+        /* --- MODERNÉ KABÍNOVÉ MENU (GitHub štýl pre knihu, zúžené a posunuté doľava) --- */
         .github-menu-box {
             position: absolute;
             background: #ffffff;
             border: 1px solid #d0d7de;
             border-radius: 6px;
             box-shadow: 0 -8px 24px rgba(140, 149, 159, 0.35);
-            width: 240px;
+            width: 210px;
             display: none;
             flex-direction: column;
             z-index: 150;
@@ -285,8 +285,8 @@
         .github-menu-item {
             display: flex;
             align-items: center;
-            padding: 6px 12px;
-            font-size: 13px;
+            padding: 5px 10px;
+            font-size: 12px;
             color: #24292f;
             text-decoration: none;
             white-space: nowrap;
@@ -300,9 +300,9 @@
 
         .chapter-num {
             display: inline-block;
-            width: 22px;
+            width: 18px;
             text-align: right;
-            margin-right: 10px;
+            margin-right: 8px;
             font-weight: 500;
             color: #57606a;
         }
@@ -316,12 +316,12 @@
             text-overflow: ellipsis;
         }
 
-        /* Profil, sova a tlačidlo zatvorenia */
+        /* Profil, sova a tlačidlo zatvorenia (výrazne zmenšené, aby sa zmestili) */
         .profile-layout { 
             display: flex; 
             align-items: center; 
             justify-content: space-between; 
-            gap: 25px; 
+            gap: 12px; 
             width: 100%; 
             text-align: left; 
         }
@@ -331,50 +331,50 @@
             flex-direction: column; 
         }
         .profile-title { 
-            font-size: 1.6rem !important; 
+            font-size: 1.1rem !important; 
             font-weight: bold; 
             color: #4a270b; 
-            margin: 0 0 4px 0; 
+            margin: 0 0 2px 0; 
             border-bottom: 2px solid #b8915c !important;
-            padding-bottom: 5px !important;
+            padding-bottom: 2px !important;
             width: 100% !important;
         }
         .profile-subtitle { 
-            font-size: 1.15rem !important; 
+            font-size: 0.85rem !important; 
             font-style: italic; 
             color: #5c3a21; 
-            margin: 0 0 15px 0; 
+            margin: 0 0 6px 0; 
         }
         .profile-text { 
-            font-size: 1.05rem !important; 
-            line-height: 1.5 !important; 
+            font-size: 0.72rem !important; 
+            line-height: 1.25 !important; 
             margin: 0; 
         }
         .profile-photos-side { 
             display: flex; 
             flex-direction: column; 
-            gap: 12px; 
+            gap: 6px; 
             align-items: flex-end; 
             position: relative; 
-            min-width: 190px; 
+            min-width: 110px; 
         }
         .photo-main { 
-            width: 155px; 
-            height: 190px; 
+            width: 95px; 
+            height: 115px; 
             object-fit: cover; 
-            border: 4px solid #fff; 
-            box-shadow: 0 6px 20px rgba(0,0,0,0.35); 
+            border: 2px solid #fff; 
+            box-shadow: 0 4px 12px rgba(0,0,0,0.35); 
             z-index: 2; 
         }
         .photo-secondary { 
-            width: 115px; 
-            height: 115px; 
+            width: 70px; 
+            height: 70px; 
             object-fit: cover; 
-            border: 4px solid #fff; 
-            box-shadow: 0 6px 20px rgba(0,0,0,0.35); 
+            border: 2px solid #fff; 
+            box-shadow: 0 4px 12px rgba(0,0,0,0.35); 
             position: absolute; 
-            top: 105px; 
-            right: 105px; 
+            top: 60px; 
+            right: 65px; 
             z-index: 3; 
         }
         
@@ -383,50 +383,50 @@
             flex-direction: column; 
             align-items: center; 
             width: 100%; 
-            gap: 10px; 
+            gap: 6px; 
         }
         .contacts-intro { 
-            font-size: 1.05rem !important; 
+            font-size: 0.82rem !important; 
             font-style: italic; 
             color: #5c3a21; 
-            margin-bottom: 8px !important; 
+            margin-bottom: 4px !important; 
             text-align: center; 
         }
         .contacts-list { 
             display: flex; 
             flex-direction: column; 
-            gap: 12px; 
+            gap: 6px; 
             width: 100%; 
-            max-width: 380px; 
+            max-width: 320px; 
             align-items: flex-start; 
         }
         .contact-item { 
             display: flex; 
             align-items: center; 
-            gap: 12px; 
-            font-size: 1.05rem !important; 
+            gap: 8px; 
+            font-size: 0.82rem !important; 
             color: #2b1705; 
         }
         .contact-icon { 
-            width: 28px; 
-            height: 28px; 
+            width: 20px; 
+            height: 20px; 
             object-fit: contain; 
             border-radius: 50%; 
         }
 
         .close-btn {
             position: absolute;
-            top: 6%;
-            right: 10%;
+            top: 5%;
+            right: 8%;
             background: rgba(92, 58, 33, 0.15);
             border: 2px solid #5c3a21;
             border-radius: 50%;
-            width: 42px;
-            height: 42px;
+            width: 32px;
+            height: 32px;
             display: flex;
             justify-content: center;
             align-items: center;
-            font-size: 32px;
+            font-size: 24px;
             line-height: 1;
             cursor: pointer;
             color: #4a270b;
@@ -469,7 +469,7 @@
             </div>
         </div>
 
-        <!-- GitHub rozbaľovacie menu pre knihu (vysúva sa nahor) -->
+        <!-- GitHub rozbaľovacie menu pre knihu (posunuté doľava) -->
         <div id="github-menu" class="github-menu-box">
             <a href="#" class="github-menu-item"><span class="chapter-num">1.</span><span class="chapter-name">Kúzelné formule</span></a>
             <a href="#" class="github-menu-item"><span class="chapter-num">2.</span><span class="chapter-name">OPČM</span></a>
@@ -530,7 +530,7 @@ const texts = {
                    </div>
                </div>
            </div>`,
-    hodiny: `<h2>Upozornenie</h2><p style="font-size: 1.15rem; margin-top: 10px;">Nezabudnite pravidelne kontrolovať nástenku.</p>`
+    hodiny: `<h2>Upozornenie</h2><p style="font-size: 0.95rem; margin-top: 5px;">Nezabudnite pravidelne kontrolovať nástenku.</p>`
 };
 
 function showText(target) {
@@ -569,9 +569,10 @@ function showText(target) {
             clockSound.currentTime = 0;
             clockSound.play().catch(error => console.log("Zvuk hodín zablokovaný:", error));
             
+            // Predĺžené na 5 sekúnd, aby sa prehravač dlhšie venoval hodinám
             clockTimeout = setTimeout(() => {
                 clockSound.pause();
-            }, 2500);
+            }, 5000);
         }
     }
 }
@@ -597,12 +598,11 @@ function toggleGitHubMenu(event) {
         const rect = event.currentTarget.getBoundingClientRect();
         const containerRect = document.querySelector('.workspace-container').getBoundingClientRect();
         
-        // Vypočítame výšku menu (približná výška pre 9 položiek je cca 260px)
-        const menuHeight = 265;
+        const menuHeight = 240;
         
-        // Umiestnenie nahor nad knihu (alebo pod, ak by bolo hore prázdno, no tu sa vysunie nahor)
         const topPos = (rect.top - containerRect.top) - menuHeight - 5;
-        const leftPos = rect.left - containerRect.left;
+        // Posunuté o 130 pixelov doľava, aby ho Revelio neodseklo na pravej strane
+        const leftPos = (rect.left - containerRect.left) - 130;
         
         menu.style.top = topPos + 'px';
         menu.style.left = leftPos + 'px';
@@ -619,7 +619,6 @@ function closeGitHubMenu() {
     menu.classList.remove('active');
 }
 
-// Zatvorenie menu pri kliknutí hocikde inam na stránke
 window.addEventListener('click', () => {
     closeGitHubMenu();
 });
