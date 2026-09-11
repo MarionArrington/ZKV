@@ -6,18 +6,20 @@
     <title>Hradná pracovňa</title>
     <style>
         body {
+            background-color: #1a1a1a;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
             margin: 0;
-            padding: 0;
             font-family: 'Georgia', serif;
-            background-color: transparent;
             overflow: hidden;
         }
 
         .workspace-container {
             position: relative;
+            max-width: 720px; /* Úprava šírky pre odstránenie čiernych pásov */
             width: 100%;
-            max-width: 100%;
-            line-height: 0;
         }
 
         .main-image {
@@ -26,18 +28,6 @@
             display: block;
             border-radius: 4px;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7);
-        }
-
-        /* Text o interaktívnosti vložený priamo pod obrázok */
-        .interactive-note {
-            color: #ffffff;
-            font-size: 0.95rem;
-            font-style: italic;
-            text-align: center;
-            margin-top: 15px;
-            font-family: Georgia, serif;
-            letter-spacing: 0.5px;
-            line-height: normal;
         }
 
         /* Zhasnutie stránky po kliknutí na sviečku */
@@ -140,7 +130,7 @@
         .flame-glow {
             position: absolute;
             top: 53%;
-            left: 64%;
+            left: 64%; /* Posunuté o milimeter doľava */
             width: 55px;
             height: 55px;
             background: radial-gradient(circle, rgba(255,240,150,0.95) 0%, rgba(255,120,0,0.7) 50%, rgba(255,60,0,0.2) 80%, transparent 100%);
@@ -360,7 +350,7 @@
             text-overflow: ellipsis;
         }
 
-        /* Profil */
+        /* Profil - výrazne zväčšená medzera medzi textom a obrázkami */
         .profile-layout { 
             display: flex; 
             align-items: center; 
@@ -373,7 +363,7 @@
             flex: 1; 
             display: flex; 
             flex-direction: column; 
-            margin-right: 28px; 
+            margin-right: 28px; /* Omnoho väčší odstup od fotiek */
         }
         .profile-title { 
             font-size: 1.1rem !important; 
@@ -490,12 +480,6 @@
 
     <div class="workspace-container" id="workspace">
         <img src="https://i.ibb.co/tT4pQm75/pracovna.png" alt="Pracovňa" class="main-image">
-        
-        <!-- Text o interaktívnosti priamo pod obrázkom -->
-        <div class="interactive-note">
-            (Obrázok je interaktívny. Kliknite na predmety v pracovni.)
-        </div>
-
         <div class="room-darkness"></div>
         <div class="owl-blink-layer"></div>
         <div class="flame-glow"></div>
