@@ -7,14 +7,17 @@
     <style>
         body {
             margin: 0;
+            padding: 0;
             font-family: 'Georgia', serif;
             background-color: transparent;
+            overflow: hidden; /* Zablokuje akékoľvek roscrollovanie vnútri iframe, čím zmizne spodný pás */
         }
 
         .workspace-container {
             position: relative;
             width: 100%;
             max-width: 100%;
+            line-height: 0; /* Odstráni neviditeľnú medzeru pod obrázkom */
         }
 
         .main-image {
@@ -125,7 +128,7 @@
         .flame-glow {
             position: absolute;
             top: 53%;
-            left: 64%; /* Posunuté doľava */
+            left: 64%;
             width: 55px;
             height: 55px;
             background: radial-gradient(circle, rgba(255,240,150,0.95) 0%, rgba(255,120,0,0.7) 50%, rgba(255,60,0,0.2) 80%, transparent 100%);
@@ -345,7 +348,7 @@
             text-overflow: ellipsis;
         }
 
-        /* Profil - veľká medzera medzi textom a obrázkami zachovaná */
+        /* Profil */
         .profile-layout { 
             display: flex; 
             align-items: center; 
