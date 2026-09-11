@@ -6,20 +6,15 @@
     <title>Hradná pracovňa</title>
     <style>
         body {
-            background-color: #1a1a1a;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
             margin: 0;
             font-family: 'Georgia', serif;
-            overflow: hidden;
+            background-color: transparent;
         }
 
         .workspace-container {
             position: relative;
-            max-width: 720px; /* Úprava šírky pre odstránenie čiernych pásov */
             width: 100%;
+            max-width: 100%;
         }
 
         .main-image {
@@ -130,7 +125,7 @@
         .flame-glow {
             position: absolute;
             top: 53%;
-            left: 64%; /* Posunuté o milimeter doľava */
+            left: 64%; /* Posunuté doľava */
             width: 55px;
             height: 55px;
             background: radial-gradient(circle, rgba(255,240,150,0.95) 0%, rgba(255,120,0,0.7) 50%, rgba(255,60,0,0.2) 80%, transparent 100%);
@@ -350,7 +345,7 @@
             text-overflow: ellipsis;
         }
 
-        /* Profil - výrazne zväčšená medzera medzi textom a obrázkami */
+        /* Profil - veľká medzera medzi textom a obrázkami zachovaná */
         .profile-layout { 
             display: flex; 
             align-items: center; 
@@ -363,7 +358,7 @@
             flex: 1; 
             display: flex; 
             flex-direction: column; 
-            margin-right: 28px; /* Omnoho väčší odstup od fotiek */
+            margin-right: 28px; 
         }
         .profile-title { 
             font-size: 1.1rem !important; 
