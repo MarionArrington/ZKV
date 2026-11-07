@@ -18,7 +18,7 @@
 
         .workspace-container {
             position: relative;
-            max-width: 720px; /* Úprava šírky pre odstránenie čiernych pásov */
+            max-width: 720px;
             width: 100%;
         }
 
@@ -130,7 +130,7 @@
         .flame-glow {
             position: absolute;
             top: 53%;
-            left: 64%; /* Posunuté o milimeter doľava */
+            left: 64%;
             width: 55px;
             height: 55px;
             background: radial-gradient(circle, rgba(255,240,150,0.95) 0%, rgba(255,120,0,0.7) 50%, rgba(255,60,0,0.2) 80%, transparent 100%);
@@ -300,6 +300,8 @@
             border-radius: 6px;
             box-shadow: 0 -8px 24px rgba(140, 149, 159, 0.35);
             width: 210px;
+            max-height: 310px; /* Pevná max výška, aby sa vždy vošlo na obrazovku */
+            overflow-y: auto;  /* Pridá elegantný posuvník pre všetkých 11 položiek */
             display: none;
             flex-direction: column;
             z-index: 150;
@@ -319,7 +321,7 @@
         .github-menu-item {
             display: flex;
             align-items: center;
-            padding: 5px 10px;
+            padding: 6px 10px;
             font-size: 12px;
             color: #24292f;
             text-decoration: none;
@@ -350,7 +352,7 @@
             text-overflow: ellipsis;
         }
 
-        /* Profil - výrazne zväčšená medzera medzi textom a obrázkami */
+        /* Profil */
         .profile-layout { 
             display: flex; 
             align-items: center; 
@@ -363,7 +365,7 @@
             flex: 1; 
             display: flex; 
             flex-direction: column; 
-            margin-right: 28px; /* Omnoho väčší odstup od fotiek */
+            margin-right: 28px;
         }
         .profile-title { 
             font-size: 1.1rem !important; 
@@ -508,15 +510,17 @@
 
         <!-- GitHub rozbaľovacie menu pre knihu -->
         <div id="github-menu" class="github-menu-box">
-            <a href="#" class="github-menu-item"><span class="chapter-num">1.</span><span class="chapter-name">Kúzelné formule</span></a>
-            <a href="#" class="github-menu-item"><span class="chapter-num">2.</span><span class="chapter-name">OPČM</span></a>
-            <a href="#" class="github-menu-item"><span class="chapter-num">3.</span><span class="chapter-name">Dejiny mágie</span></a>
-            <a href="#" class="github-menu-item"><span class="chapter-num">4.</span><span class="chapter-name">Premeňovanie</span></a>
-            <a href="#" class="github-menu-item"><span class="chapter-num">5.</span><span class="chapter-name">Lektvary</span></a>
-            <a href="#" class="github-menu-item"><span class="chapter-num">6.</span><span class="chapter-name">Bylinky, Astronómia</span></a>
-            <a href="#" class="github-menu-item"><span class="chapter-num">7.</span><span class="chapter-name">Drakológia, POKT</span></a>
-            <a href="#" class="github-menu-item"><span class="chapter-num">8.</span><span class="chapter-name">Štúdium muklov</span></a>
-            <a href="#" class="github-menu-item"><span class="chapter-num">9.</span><span class="chapter-name">Lietanie</span></a>
+            <a href="https://marionarrington.github.io/kuzelne-formule/" class="github-menu-item"><span class="chapter-num">1.</span><span class="chapter-name">Kúzelné formule</span></a>
+            <a href="https://marionarrington.github.io/OPCM/" class="github-menu-item"><span class="chapter-num">2.</span><span class="chapter-name">OPČM</span></a>
+            <a href="https://marionarrington.github.io/Dejiny-magie/" class="github-menu-item"><span class="chapter-num">3.</span><span class="chapter-name">Dejiny mágie</span></a>
+            <a href="https://marionarrington.github.io/Premeny/" class="github-menu-item"><span class="chapter-num">4.</span><span class="chapter-name">Přeměňování</span></a>
+            <a href="https://marionarrington.github.io/Lektvary/" class="github-menu-item"><span class="chapter-num">5.</span><span class="chapter-name">Lektvary</span></a>
+            <a href="https://marionarrington.github.io/Bylinky/" class="github-menu-item"><span class="chapter-num">6.</span><span class="chapter-name">Bylinky</span></a>
+            <a href="https://marionarrington.github.io/Astronomia/" class="github-menu-item"><span class="chapter-num">7.</span><span class="chapter-name">Astronómia</span></a>
+            <a href="https://marionarrington.github.io/Draky/" class="github-menu-item"><span class="chapter-num">8.</span><span class="chapter-name">Drakológia</span></a>
+            <a href="https://marionarrington.github.io/Muklovia/" class="github-menu-item"><span class="chapter-num">9.</span><span class="chapter-name">Štúdium muklov</span></a>
+            <a href="https://marionarrington.github.io/Lietanie/" class="github-menu-item"><span class="chapter-num">10.</span><span class="chapter-name">Lietanie</span></a>
+            <a href="https://marionarrington.github.io/POKT/" class="github-menu-item"><span class="chapter-num">11.</span><span class="chapter-name">POKT</span></a>
         </div>
     </div>
 
@@ -530,7 +534,7 @@ let clockTimeout;
 
 const texts = {
     pergamen: `<h2>Spôsob výučby</h2>
-               <p>Ako isto viete, Základy kúzelníckeho vzdelania neprebiehajú formou online výuky, ale na príslušnú nástenku pridelenú triede ZKV A (sekcia 102) pribudnú každý týždeň nové zápisky. V rovnakom intervale budú zverejňované aj zadania domácich úloh.<br>Pre úspešné ukončenie predmetu a postup do ďalšieho ročníka je nutné získať minimálne päť známok, či už vďaka vyššie spomenutým prácam alebo povinnej polročnej a koncoročnej skúške.</p>
+               <p>Ako isto viete, Základy kúzelníckeho vzdelania neprebiehajú formou online výuky, ale na príslušnú nástenku pridelenú triede ZKV A (sekcia 102) pribudnú každý týždeň nové zápisky. V rovnakom intervale budú zverejňované aj zadania domácich úloh.<br>Pre úspešné ukončenje predmetu a postup do ďalšieho ročníka je nutné získať minimálne päť známok, či už vďaka vyššie spomenutým prácam alebo povinnej polročnej a koncoročnej skúške.</p>
                
                <h2>Domáce úlohy</h2>
                <p>V každej zo zadaných nepovinných prác Vám bude ponúknutých hneď niekoľko možností vypracovania, takže pevne verím, že si každý nájde to, ktoré bude najviac vyhovovať jeho záujmom a schopnostiam. Okrem formulára pod zadaním nám môžete úlohy zasielať i prostredníctvom Discordu, avšak v odosielacom formulári vždy uveďte, z akého účtu ste prácu odovzdali.</p>
@@ -643,9 +647,15 @@ function toggleGitHubMenu(event) {
         const rect = event.currentTarget.getBoundingClientRect();
         const containerRect = document.querySelector('.workspace-container').getBoundingClientRect();
         
-        const menuHeight = 240;
+        // Zabezpečíme, aby sa menu vždy vyrenderovalo tak, že sa zmestí do okna
+        const menuHeight = 280; 
+        let topPos = (rect.top - containerRect.top) - menuHeight - 5;
         
-        const topPos = (rect.top - containerRect.top) - menuHeight - 5;
+        // Ak by bolo príliš hore, posunieme ho tesne nad knihu bez prekročenia stropu
+        if (topPos < 10) {
+            topPos = 10;
+        }
+        
         const leftPos = (rect.left - containerRect.left) - 130;
         
         menu.style.top = topPos + 'px';
